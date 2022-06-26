@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Navigation
 //
-//  Created by Роман Беспалов on 15.06.2022.
+//  Created by Роман Беспалов on 22.06.2022.
 //
 
 import UIKit
@@ -16,7 +16,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let feedVC = FeedViewController()
+        let profileVC = ProfileViewController()
+        let postVC = PostViewController()
+       
+        let userFeed = UINavigationController(rootViewController: feedVC)
+        let userProfile = UINavigationController(rootViewController: profileVC)
+        let postNC = UINavigationController(rootViewController: postVC)
+        
+        userFeed.tabBarItem.title = "FEED"
+        userFeed.tabBarItem.image = UIImage(systemName: "bolt.horizontal")
+        
+        userProfile.tabBarItem.title = "PROFILE"
+        userProfile.tabBarItem.image = UIImage(systemName: "house")
+
+        postVC.tabBarItem.image = UIImage(systemName: "message")
+        
+        let tbc = UITabBarController()
+        tbc.setViewControllers([userFeed, userProfile, postNC], animated: true)
+        
+        self.window = UIWindow(windowScene: windowScene)
+        self.window?.rootViewController = tbc
+        self.window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
