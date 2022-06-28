@@ -17,6 +17,7 @@ class FeedViewController: UIViewController {
         return button
     }()
     
+    var newPost = Post(title: "My Post")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,6 @@ class FeedViewController: UIViewController {
         postVC.titlePost = newPost.title
     }
     
-    var newPost = Post(title: "My Post")
 }
 
 

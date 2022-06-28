@@ -9,7 +9,8 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-
+    var titlePost: String = "POST"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemGray
@@ -20,8 +21,6 @@ class PostViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = myButton
     }
-    
-    var titlePost: String = "POST"
     
     @objc func tap() {
         let infoVC = InfoViewController()

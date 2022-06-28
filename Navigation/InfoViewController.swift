@@ -14,12 +14,12 @@ class InfoViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitle("Don't push it", for: .normal)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        button.sizeToFit()
+        button.center = view.center
         return button
     }()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .systemBlue
         
         view.addSubview(button)
         button.sizeToFit()
