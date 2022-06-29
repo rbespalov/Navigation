@@ -23,11 +23,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let userFeed = UINavigationController(rootViewController: feedVC)
         let userProfile = UINavigationController(rootViewController: profileVC)
         
+        userFeed.navigationBar.backgroundColor = .systemGray6
+        userProfile.navigationBar.backgroundColor = .systemGray6
+        
+        
         let tbc = UITabBarController()
         tbc.setViewControllers([userFeed, userProfile], animated: true)
         
         userFeed.tabBarItem.title = "FEED"
         userFeed.tabBarItem.image = UIImage(systemName: "bolt.horizontal")
+        
+        tbc.tabBar.backgroundColor = .systemGray6
         
         userProfile.tabBarItem.title = "PROFILE"
         userProfile.tabBarItem.image = UIImage(systemName: "house")
