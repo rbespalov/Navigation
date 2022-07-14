@@ -19,16 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedVC = FeedViewController()
         let profileVC = ProfileViewController()
         let postVC = PostViewController()
+        let loginVC = LogInViewController()
        
         let userFeed = UINavigationController(rootViewController: feedVC)
         let userProfile = UINavigationController(rootViewController: profileVC)
+        let userLogin = UINavigationController(rootViewController: loginVC)
         
         userFeed.navigationBar.backgroundColor = .systemGray6
         userProfile.navigationBar.backgroundColor = .systemGray6
         
         
         let tbc = UITabBarController()
-        tbc.setViewControllers([userFeed, userProfile], animated: true)
+        tbc.setViewControllers([userFeed, userLogin], animated: true)
         
         userFeed.tabBarItem.title = "FEED"
         userFeed.tabBarItem.image = UIImage(systemName: "bolt.horizontal")
@@ -39,6 +41,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         userProfile.tabBarItem.image = UIImage(systemName: "house")
 
         postVC.tabBarItem.image = UIImage(systemName: "message")
+        
+        userLogin.tabBarItem.image = UIImage(systemName: "person.fill")
+        userLogin.tabBarItem.title = "Profile"
         
         
         self.window = UIWindow(windowScene: windowScene)
