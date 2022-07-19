@@ -19,6 +19,9 @@
 		D6ADF319287D82F4009D90E2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADF318287D82F4009D90E2 /* LogInViewController.swift */; };
 		D6ADF31B287DC7ED009D90E2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADF31A287DC7ED009D90E2 /* CustomButton.swift */; };
 		D6D0718B286B802A00043F15 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0718A286B802A00043F15 /* ProfileHeaderView.swift */; };
+		D6D90DED2880300F005D8B13 /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */; };
+		D6D90DEF288045A4005D8B13 /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DEE288045A4005D8B13 /* ProfilePost.swift */; };
+		D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		D6ADF318287D82F4009D90E2 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D6ADF31A287DC7ED009D90E2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D6D0718A286B802A00043F15 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
+		D6D90DEE288045A4005D8B13 /* ProfilePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
+		D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +91,13 @@
 		D6D07189286B7FD000043F15 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D6ADF31A287DC7ED009D90E2 /* CustomButton.swift */,
-				D6D0718A286B802A00043F15 /* ProfileHeaderView.swift */,
 				D6734AAC2863961E00E4E76C /* ProfileViewController.swift */,
+				D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */,
+				D6D0718A286B802A00043F15 /* ProfileHeaderView.swift */,
+				D6D90DEE288045A4005D8B13 /* ProfilePost.swift */,
+				D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */,
 				D6ADF318287D82F4009D90E2 /* LogInViewController.swift */,
+				D6ADF31A287DC7ED009D90E2 /* CustomButton.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -164,15 +173,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D65EA484286395A300DD5B22 /* FeedViewController.swift in Sources */,
+				D6D90DED2880300F005D8B13 /* ProfileTableHederView.swift in Sources */,
 				D65EA480286395A300DD5B22 /* AppDelegate.swift in Sources */,
 				D6ADF319287D82F4009D90E2 /* LogInViewController.swift in Sources */,
 				D6734AAD2863961E00E4E76C /* ProfileViewController.swift in Sources */,
 				D6ADF31B287DC7ED009D90E2 /* CustomButton.swift in Sources */,
 				D6644EBB286799A5005D69A9 /* InfoViewController.swift in Sources */,
+				D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */,
 				D6644EB7286762AE005D69A9 /* Post.swift in Sources */,
 				D65EA482286395A300DD5B22 /* SceneDelegate.swift in Sources */,
 				D6644EB52867585E005D69A9 /* PostViewController.swift in Sources */,
 				D6D0718B286B802A00043F15 /* ProfileHeaderView.swift in Sources */,
+				D6D90DEF288045A4005D8B13 /* ProfilePost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
