@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    // MARK: - Subviews
+    
     private lazy var imageView: UIImageView = {
         let morty = UIImage(named: "morty")
         let imageView = UIImageView(image: morty!)
@@ -76,6 +78,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self .setupView()
+        self.backgroundColor = .systemGray6
     }
     
     required init?(coder: NSCoder) {
@@ -102,7 +105,8 @@ class ProfileHeaderView: UIView {
             status.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -16),
             status.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            statusButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 15),
+            statusButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -15),
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
             statusButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 185),
             statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
