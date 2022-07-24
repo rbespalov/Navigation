@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         userFeed.navigationBar.backgroundColor = .systemGray6
         userProfile.navigationBar.backgroundColor = .systemGray6
-        
+
         
         let tbc = UITabBarController()
         tbc.setViewControllers([userFeed, userProfile], animated: true)

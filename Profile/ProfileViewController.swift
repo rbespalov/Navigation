@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController {
     
     private enum CellReuseID: String {
         case base = "BaseTableView_ReuseID"
+        case photos = "PhotosTableView_ReuseID"
     }
     
     private enum HeaderFooterReuseID: String {
@@ -43,8 +44,6 @@ class ProfileViewController: UIViewController {
         addSubViews()
         setupConstraints()
         tuneTableView()
-
-        
     }
     
     // MARK: - Private
@@ -72,11 +71,15 @@ class ProfileViewController: UIViewController {
     
     private func tuneTableView() {
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .systemGray6
         tableView.register(
             PostTableViewCell.self,
             forCellReuseIdentifier: CellReuseID.base.rawValue
         )
+        
+        tableView.register(
+            PhotosTableViewCell.self,
+            forCellReuseIdentifier: CellReuseID.photos.rawValue)
         
         tableView.register(
             ProfileTableHederView.self,
@@ -94,20 +97,36 @@ extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(
         in tableView: UITableView
     ) -> Int {
-        1
+        2
     }
     
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        data.count
+        
+        if section == 0 {
+            return 1
+        } else {
+           return data.count
+        }
     }
     
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: CellReuseID.photos.rawValue,
+                for: indexPath
+            ) as? PhotosTableViewCell else {
+                fatalError("could not dequeueReusableCell")
+            }
+
+            return cell
+        }
         
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: CellReuseID.base.rawValue,
@@ -129,7 +148,12 @@ extension ProfileViewController: UITableViewDelegate {
         _ tableView: UITableView,
         heightForHeaderInSection section: Int
     ) -> CGFloat {
-        250
+        
+        if section == 0 {
+           return 250
+        } else {
+           return 0
+        }
     }
     
     func tableView(
@@ -137,13 +161,33 @@ extension ProfileViewController: UITableViewDelegate {
         viewForHeaderInSection section: Int
     ) -> UIView? {
         
-        guard let headerView =
-                tableView.dequeueReusableHeaderFooterView(
-                withIdentifier: HeaderFooterReuseID.base.rawValue
-                ) as? ProfileTableHederView else {
-                    fatalError("could not dequeueReusableCell")
-                }
-        
-        return headerView
+        if section == 0 {
+            
+            guard let headerView =
+                    tableView.dequeueReusableHeaderFooterView(
+                    withIdentifier: HeaderFooterReuseID.base.rawValue
+                    ) as? ProfileTableHederView else {
+                        fatalError("could not dequeueReusableCell")
+                    }
+            return headerView
+        } else {
+            let emptyHeader = UIView()
+            return emptyHeader
+        }
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        if indexPath.section == 0 {
+            
+            let nextViewController = PhotosViewController()
+            navigationController?.navigationBar.isHidden = false
+            navigationController?.pushViewController(
+                nextViewController, animated: true
+                
+            )
+        }
     }
 }
