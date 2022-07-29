@@ -11,7 +11,28 @@ class ProfileHeaderView: UIView {
     
     // MARK: - Subviews
     
-    private lazy var imageView: UIImageView = {
+    lazy  var newView: UIView = {
+        let newView = UIView()
+        newView.backgroundColor = .systemGray6
+        newView.translatesAutoresizingMaskIntoConstraints = false
+        newView.alpha = 0
+        return newView
+    }()
+    
+    lazy var xButton : UIImageView = {
+        let xButton = UIImageView(image: UIImage(systemName: "x.circle"))
+        xButton.translatesAutoresizingMaskIntoConstraints = false
+        xButton.alpha = 0
+        xButton.isUserInteractionEnabled = true
+        let tapXbutton = UITapGestureRecognizer (
+            target: self,
+            action: #selector(startXanimation)
+        )
+        xButton.addGestureRecognizer(tapXbutton)
+        return xButton
+    }()
+    
+    lazy var imageView: UIImageView = {
         let morty = UIImage(named: "morty")
         let imageView = UIImageView(image: morty!)
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
@@ -20,7 +41,14 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        
+        imageView.isUserInteractionEnabled = true
+        
+        let tapAvatar = UITapGestureRecognizer (
+            target: self,
+            action: #selector(startAnimation)
+        )
+        imageView.addGestureRecognizer(tapAvatar)
         return imageView
     }()
     
@@ -89,6 +117,7 @@ class ProfileHeaderView: UIView {
         
         let safeArea = self.safeAreaLayoutGuide
         
+        
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
             imageView.widthAnchor.constraint(equalToConstant: 125),
@@ -114,7 +143,17 @@ class ProfileHeaderView: UIView {
             textField.heightAnchor.constraint(equalToConstant: 40),
             textField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            textField.leadingAnchor.constraint(equalTo: status.leadingAnchor)
+            textField.leadingAnchor.constraint(equalTo: status.leadingAnchor),
+            
+            newView.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 405),
+            newView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            newView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            newView.heightAnchor.constraint(equalToConstant: 150),
+            
+            xButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16),
+            xButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            xButton.heightAnchor.constraint(equalToConstant: 50),
+            xButton.widthAnchor.constraint(equalToConstant: 55),
         ])
     }
     
@@ -124,6 +163,8 @@ class ProfileHeaderView: UIView {
         self.addSubview(status)
         self.addSubview(statusButton)
         self.addSubview(textField)
+        self.addSubview(newView)
+        self.addSubview(xButton)
         setupConstraints()
     }
     
@@ -137,6 +178,42 @@ class ProfileHeaderView: UIView {
         statusText = input!
     }
     
+    @objc private func startAnimation() {
+
+        let VC = ProfileViewController()
+
+        let animator = UIViewPropertyAnimator (
+            duration: 0.5,
+            curve: .linear
+        ) {
+            self.imageView.layer.frame = CGRect(x: 0, y: 0, width: VC.view.layer.frame.width, height: VC.view.layer.frame.width)
+            self.imageView.center = VC.view.center
+            self.imageView.layer.cornerRadius = 0
+            self.newView.alpha = 0.8
+        }
+        animator.startAnimation()
+        
+        let animator2 = UIViewPropertyAnimator (
+            duration: 0.3,
+            curve: .linear
+        ) {
+            self.xButton.alpha = 1
+        }
+        animator2.startAnimation(afterDelay: 0.5)
+    }
+    
+    @objc private func startXanimation() {
+        let animator = UIViewPropertyAnimator (
+            duration: 0.5,
+            curve: .linear
+        ) {
+            self.newView.alpha = 0
+            self.xButton.alpha = 0
+            self.imageView.layer.frame = CGRect(x: 16, y: 16, width: 125, height: 125)
+            self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2
+        }
+        animator.startAnimation()
+    }
 }
 
 
