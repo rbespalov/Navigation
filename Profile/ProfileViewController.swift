@@ -55,6 +55,7 @@ class ProfileViewController: UIViewController {
     
     private func addSubViews() {
         view.addSubview(tableView)
+        
     }
     
     private func setupConstraints() {
@@ -90,6 +91,7 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         
     }
+    
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -169,6 +171,7 @@ extension ProfileViewController: UITableViewDelegate {
                     ) as? ProfileTableHederView else {
                         fatalError("could not dequeueReusableCell")
                     }
+            
             return headerView
         } else {
             let emptyHeader = UIView()
