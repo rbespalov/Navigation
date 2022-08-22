@@ -12,7 +12,6 @@ class LogInViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.backgroundColor = .white
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView

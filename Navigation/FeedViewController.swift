@@ -5,6 +5,8 @@
 //  Created by Роман Беспалов on 22.06.2022.
 //
 import UIKit
+import StorageService
+
 
 class FeedViewController: UIViewController {
     
@@ -47,6 +49,7 @@ class FeedViewController: UIViewController {
 
         return stackView
     }()
+    
     
     var newPost = Post(title: "My Post")
     
