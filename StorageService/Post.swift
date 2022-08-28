@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct Post {
+public struct Post {
     
     let title: String
+    
+    public init(title: String) {
+        self.title = title
+    }
 }
 
 
