@@ -1,6 +1,7 @@
 
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -137,7 +138,11 @@ class PostTableViewCell: UITableViewCell {
         with post: ProfilePost
     ) {
         authotLabel.text = post.author
-        postImage.image = UIImage(named: post.image)
+        if let image = UIImage(named: post.image) {
+            ImageProcessor().processImage(sourceImage: image, filter: .fade) {
+                postImage.image = $0
+            }
+        }
         postDescription.text = post.description
         numberOfViews.text = String("Likes: \(post.views)")
         numberOfLikes.text = String("Views: \(post.likes)")

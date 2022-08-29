@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     
@@ -113,48 +114,50 @@ class ProfileHeaderView: UIView {
         super.init(coder: coder)
     }
     
-    private func setupConstraints() {
-        
+    private func snapKitConstraints() {
         let safeArea = self.safeAreaLayoutGuide
-        
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            imageView.widthAnchor.constraint(equalToConstant: 125),
-            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16),
-            imageView.heightAnchor.constraint(equalToConstant: 125),
-            
-            title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            title.widthAnchor.constraint(equalToConstant: 110),
-            title.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 27),
-            title.heightAnchor.constraint(equalToConstant: 18),
-            
-            status.widthAnchor.constraint(equalToConstant: 100),
-            status.heightAnchor.constraint(equalToConstant: 20),
-            status.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -16),
-            status.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            statusButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -15),
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
-            statusButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 185),
-            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            
-            textField.heightAnchor.constraint(equalToConstant: 40),
-            textField.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16),
-            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            textField.leadingAnchor.constraint(equalTo: status.leadingAnchor),
-            
-            newView.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 405),
-            newView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            newView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            newView.heightAnchor.constraint(equalToConstant: 150),
-            
-            xButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16),
-            xButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            xButton.heightAnchor.constraint(equalToConstant: 50),
-            xButton.widthAnchor.constraint(equalToConstant: 55),
-        ])
+        imageView.snp.makeConstraints { (make) -> Void in
+            make.width.height.equalTo(125)
+            make.top.equalTo(safeArea).inset(16)
+            make.leading.equalTo(safeArea).inset(16)
+        }
+        title.snp.makeConstraints { make in
+            make.height.equalTo(18)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(110)
+            make.top.equalTo(safeArea).inset(27)
+        }
+        status.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(20)
+            make.bottom.equalTo(textField.snp_topMargin).inset(-16)
+            make.centerX.equalToSuperview()
+        }
+        statusButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeArea).inset(15)
+            make.height.equalTo(50)
+            make.top.equalTo(safeArea).inset(200)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+        }
+        textField.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.bottom.equalTo(statusButton.snp_topMargin).inset(-16)
+            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalTo(statusButton)
+        }
+        newView.snp.makeConstraints { make in
+            make.top.equalTo(self.snp_bottomMargin).inset(450)
+            make.leading.equalTo(safeArea)
+            make.trailing.equalTo(safeArea)
+            make.height.equalTo(150)
+        }
+        xButton.snp.makeConstraints { make in
+            make.trailing.equalTo(safeArea).inset(16)
+            make.height.equalTo(50)
+            make.width.equalTo(55)
+            make.top.equalTo(safeArea).inset(16)
+        }
     }
     
     private func setupView() {
@@ -165,7 +168,7 @@ class ProfileHeaderView: UIView {
         self.addSubview(textField)
         self.addSubview(newView)
         self.addSubview(xButton)
-        setupConstraints()
+        snapKitConstraints()
     }
     
     @objc private func tap() {
