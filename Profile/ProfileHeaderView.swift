@@ -32,9 +32,8 @@ class ProfileHeaderView: UIView {
         return xButton
     }()
     
-    lazy var imageView: UIImageView = {
-        let morty = UIImage(named: "morty")
-        let imageView = UIImageView(image: morty!)
+     lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 60
@@ -52,18 +51,16 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    private lazy var title: UILabel = {
+    lazy var title: UILabel = {
         let title = UILabel()
-        title.text = "Morty Smith"
         title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         title.translatesAutoresizingMaskIntoConstraints = false
         
         return title
     }()
     
-    private lazy var status: UILabel = {
+     lazy var status: UILabel = {
         let status = UILabel()
-        status.text = "Okaaaaaaay"
         status.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         status.textColor = UIColor.gray
         status.translatesAutoresizingMaskIntoConstraints = false

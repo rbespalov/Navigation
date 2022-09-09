@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6002D4928BD429800A33029 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4828BD429800A33029 /* User.swift */; };
+		D6002D4B28BD43B000A33029 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4A28BD43B000A33029 /* UserService.swift */; };
+		D6002D4D28CA229C00A33029 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4C28CA229C00A33029 /* CurrentUserService.swift */; };
+		D6002D4F28CB94AC00A33029 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4E28CB94AC00A33029 /* TestUserService.swift */; };
 		D6212A0628898150000D72F9 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A0528898150000D72F9 /* PhotosTableViewCell.swift */; };
 		D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A0728898E43000D72F9 /* PhotosViewController.swift */; };
 		D6212A0A2889A9C2000D72F9 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A092889A9C1000D72F9 /* Photo.swift */; };
@@ -56,6 +60,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D6002D4828BD429800A33029 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6002D4A28BD43B000A33029 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		D6002D4C28CA229C00A33029 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		D6002D4E28CB94AC00A33029 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		D6212A0528898150000D72F9 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		D6212A0728898E43000D72F9 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		D6212A092889A9C1000D72F9 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -146,6 +154,10 @@
 		D6D07189286B7FD000043F15 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D6002D4828BD429800A33029 /* User.swift */,
+				D6002D4A28BD43B000A33029 /* UserService.swift */,
+				D6002D4C28CA229C00A33029 /* CurrentUserService.swift */,
+				D6002D4E28CB94AC00A33029 /* TestUserService.swift */,
 				D6734AAC2863961E00E4E76C /* ProfileViewController.swift */,
 				D6212A0728898E43000D72F9 /* PhotosViewController.swift */,
 				D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */,
@@ -275,11 +287,15 @@
 			files = (
 				D6212A0A2889A9C2000D72F9 /* Photo.swift in Sources */,
 				D65EA484286395A300DD5B22 /* FeedViewController.swift in Sources */,
+				D6002D4B28BD43B000A33029 /* UserService.swift in Sources */,
 				D6D90DED2880300F005D8B13 /* ProfileTableHederView.swift in Sources */,
+				D6002D4D28CA229C00A33029 /* CurrentUserService.swift in Sources */,
 				D65EA480286395A300DD5B22 /* AppDelegate.swift in Sources */,
 				D6ADF319287D82F4009D90E2 /* LogInViewController.swift in Sources */,
 				D6734AAD2863961E00E4E76C /* ProfileViewController.swift in Sources */,
+				D6002D4F28CB94AC00A33029 /* TestUserService.swift in Sources */,
 				D6ADF31B287DC7ED009D90E2 /* CustomButton.swift in Sources */,
+				D6002D4928BD429800A33029 /* User.swift in Sources */,
 				D6644EBB286799A5005D69A9 /* InfoViewController.swift in Sources */,
 				D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */,
 				D6212A0628898150000D72F9 /* PhotosTableViewCell.swift in Sources */,
