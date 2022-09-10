@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController {
     
     fileprivate lazy var data = ProfilePost.make()
     
+    var currenUser: User? = nil
+        
     // MARK: - Subviews
     
     private lazy var tableView: UITableView = {
@@ -44,6 +46,7 @@ class ProfileViewController: UIViewController {
         addSubViews()
         setupConstraints()
         tuneTableView()
+        
     }
     
     // MARK: - Private
@@ -177,7 +180,9 @@ extension ProfileViewController: UITableViewDelegate {
                     ) as? ProfileTableHederView else {
                         fatalError("could not dequeueReusableCell")
                     }
-            
+            if let currentUser = currenUser {
+                headerView.setup(fullName: currentUser.fullName, statusText: currentUser.status, avatar: currentUser.avatar)
+            }
             return headerView
         } else {
             let emptyHeader = UIView()

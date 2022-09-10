@@ -32,6 +32,12 @@ class ProfileTableHederView: UITableViewHeaderFooterView {
     
     // MARK: - Private
     
+    func setup (fullName: String, statusText: String, avatar: UIImage) {
+        profileHeaderView.title.text = fullName
+        profileHeaderView.status.text = statusText
+        profileHeaderView.imageView.image = avatar
+    }
+    
     private func tuneView() {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))

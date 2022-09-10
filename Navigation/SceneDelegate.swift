@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         
         let tbc = UITabBarController()
-        tbc.setViewControllers([userFeed, userProfile], animated: true)
+        tbc.setViewControllers([userLogin,userFeed, userProfile], animated: true)
         
         userFeed.tabBarItem.title = "FEED"
         userFeed.tabBarItem.image = UIImage(systemName: "bolt.horizontal")
@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         postVC.tabBarItem.image = UIImage(systemName: "message")
         
         userLogin.tabBarItem.image = UIImage(systemName: "person.fill")
-        userLogin.tabBarItem.title = "Profile"
+        userLogin.tabBarItem.title = "LOGIN"
         
         
         self.window = UIWindow(windowScene: windowScene)

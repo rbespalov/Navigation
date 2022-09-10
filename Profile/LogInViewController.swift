@@ -224,8 +224,26 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func tap() {
-        let profleVC = ProfileViewController()
-        self.navigationController?.pushViewController(profleVC, animated: true)
+        
+        #if DEBUG
+        let check = TestUserService().check(login: loginTextField.text!)
+        let pass = TestUserService().password
+        #else
+        let check = CurrentUserService().check(login: loginTextField.text!)
+        let pass = CurrentUserService().password
+        #endif
+
+            if let loginedUser = check {
+                if pass == passwordTextField.text! {
+            let profleVC = ProfileViewController()
+            profleVC.currenUser = loginedUser
+            self.navigationController?.pushViewController(profleVC, animated: true)
+                } else {
+                    print ("invalid password")
+                }
+        } else {
+            print ("invalid user")
+        }
     }
 }
 
