@@ -9,11 +9,8 @@ import UIKit
     public var password: String = "qwe"
     
     func check(login: String) -> User? {
+        
         let user = currentUser
-        if login == user.login {
-            return user
-        } else {
-            return nil
-        }
+        return login == user.login ? user : nil
     }
 }

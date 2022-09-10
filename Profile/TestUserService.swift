@@ -10,10 +10,6 @@ class TestUserService: UserService {
     
     func check(login: String) -> User? {
         let user = testUser
-        if login == user.login {
-            return user
-        } else {
-            return nil
-        }
+        return login == user.login ? user : nil
     }
 }

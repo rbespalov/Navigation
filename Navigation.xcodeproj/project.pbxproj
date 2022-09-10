@@ -33,6 +33,8 @@
 		D6D90DED2880300F005D8B13 /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */; };
 		D6D90DEF288045A4005D8B13 /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DEE288045A4005D8B13 /* ProfilePost.swift */; };
 		D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */; };
+		D6FC765C28CC8A5D00D76D58 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC765B28CC8A5D00D76D58 /* Checker.swift */; };
+		D6FC765E28CD07B100D76D58 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC765D28CD07B100D76D58 /* LoginFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
 		D6D90DEE288045A4005D8B13 /* ProfilePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
 		D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		D6FC765B28CC8A5D00D76D58 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		D6FC765D28CD07B100D76D58 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,8 @@
 			children = (
 				D6002D4828BD429800A33029 /* User.swift */,
 				D6002D4A28BD43B000A33029 /* UserService.swift */,
+				D6FC765B28CC8A5D00D76D58 /* Checker.swift */,
+				D6FC765D28CD07B100D76D58 /* LoginFactory.swift */,
 				D6002D4C28CA229C00A33029 /* CurrentUserService.swift */,
 				D6002D4E28CB94AC00A33029 /* TestUserService.swift */,
 				D6734AAC2863961E00E4E76C /* ProfileViewController.swift */,
@@ -299,11 +305,13 @@
 				D6644EBB286799A5005D69A9 /* InfoViewController.swift in Sources */,
 				D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */,
 				D6212A0628898150000D72F9 /* PhotosTableViewCell.swift in Sources */,
+				D6FC765E28CD07B100D76D58 /* LoginFactory.swift in Sources */,
 				D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */,
 				D65EA482286395A300DD5B22 /* SceneDelegate.swift in Sources */,
 				D6644EB52867585E005D69A9 /* PostViewController.swift in Sources */,
 				D6212A0C288C09B8000D72F9 /* PhotosCollectionViewCell.swift in Sources */,
 				D6D0718B286B802A00043F15 /* ProfileHeaderView.swift in Sources */,
+				D6FC765C28CC8A5D00D76D58 /* Checker.swift in Sources */,
 				D6D90DEF288045A4005D8B13 /* ProfilePost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
