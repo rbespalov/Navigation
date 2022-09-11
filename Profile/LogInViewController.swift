@@ -229,13 +229,11 @@ class LogInViewController: UIViewController {
     @objc private func tap() {
         
         #if DEBUG
-        let check = TestUserService().check(login: loginTextField.text!)
-        let pass = TestUserService().password
+        let user = TestUserService().testUser
         #else
-        let check = CurrentUserService().check(login: loginTextField.text!)
-        let pass = CurrentUserService().password
-        #endif
         let user = CurrentUserService().currentUser
+        #endif
+        
 
         
         guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!)  else { return }

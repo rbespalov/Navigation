@@ -4,7 +4,7 @@ import UIKit
 
 class TestUserService: UserService {
     
-    let testUser: User = User(login: "test", fullName: "Test Bot", avatar: UIImage(named: "logo")!, status: "Testiiiing")
+    public let testUser: User = User(login: "test", fullName: "Test Bot", avatar: UIImage(named: "logo")!, status: "Testiiiing")
     
     let password: String = "test"
     
