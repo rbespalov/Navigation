@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-final class PhotosViewController: UIViewController {
+final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
     
     // MARK: - Data
     
     fileprivate lazy var photos: [Photo] = Photo.makePhoto()
+    
+    let facade = ImagePublisherFacade()
+    
+    var imagesFromPublisher: [UIImage] = []
+    
+    let photo: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!, UIImage(named: "6")!, UIImage(named: "7")!, UIImage(named: "8")!, UIImage(named: "9")!, UIImage(named: "10")!]
+    
     
     // MARK: Subviews
     
@@ -46,11 +54,14 @@ final class PhotosViewController: UIViewController {
         setupView()
         setupSubviews()
         setupLayouts()
+        facade.subscribe(self)
+        facade.addImagesWithTimer(time: 0.5, repeat: 15, userImages: photo)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        facade.removeSubscription(for: self)
     }
     
     // MARK: - Private
@@ -90,7 +101,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        photos.count
+        imagesFromPublisher.count
     }
     
     func collectionView(
@@ -103,8 +114,9 @@ extension PhotosViewController: UICollectionViewDataSource {
                 fatalError("could not dequeueReusableCell")
             }
         
-        let photo = photos[indexPath.row]
-        cell.setup1(with: photo)
+//        let photo = photos[indexPath.row]
+        cell.photoImage.image = imagesFromPublisher[indexPath.row]
+//        cell.setup1(with: photo)
         
         return cell  
     }
@@ -165,4 +177,14 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         8
     }
+}
+
+extension PhotosViewController {
+    
+    func receive(images: [UIImage]) {
+        
+        imagesFromPublisher = images
+        collectionView.reloadData()
+    }
+    
 }

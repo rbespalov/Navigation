@@ -11,7 +11,7 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
     
     // MARK: Subviews
     
-    private lazy var photoImage: UIImageView = {
+    lazy var photoImage: UIImageView = {
         let photoImage = UIImageView(frame: .zero)
         photoImage.translatesAutoresizingMaskIntoConstraints = false
         
