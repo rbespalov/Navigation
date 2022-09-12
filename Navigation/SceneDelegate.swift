@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileVC = ProfileViewController()
         let postVC = PostViewController()
         let loginVC = LogInViewController()
+        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
        
         let userFeed = UINavigationController(rootViewController: feedVC)
         let userProfile = UINavigationController(rootViewController: profileVC)

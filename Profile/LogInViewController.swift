@@ -4,6 +4,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var loginDelegate: LoginViewControllerDelegate?
+    
+    
     // MARK: - Suviews
     
     private lazy var scrollView: UIScrollView = {
@@ -226,23 +229,24 @@ class LogInViewController: UIViewController {
     @objc private func tap() {
         
         #if DEBUG
-        let check = TestUserService().check(login: loginTextField.text!)
-        let pass = TestUserService().password
+        let user = TestUserService().testUser
         #else
-        let check = CurrentUserService().check(login: loginTextField.text!)
-        let pass = CurrentUserService().password
+        let user = CurrentUserService().currentUser
         #endif
+        
 
-            if let loginedUser = check {
-                if pass == passwordTextField.text! {
+        
+        guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!)  else { return }
+        
+        if accessed {
             let profleVC = ProfileViewController()
-            profleVC.currenUser = loginedUser
+            profleVC.currenUser = user
             self.navigationController?.pushViewController(profleVC, animated: true)
-                } else {
-                    print ("invalid password")
-                }
         } else {
-            print ("invalid user")
+            let alert = UIAlertController(title: "Alert", message: "Wrong login or password", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            self.present(alert, animated: true)
+            
         }
     }
 }
@@ -256,4 +260,16 @@ extension LogInViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+protocol LoginViewControllerDelegate {
+    func check (inputedLogin: String, inputedPass: String) -> Bool
+}
+
+struct LoginInspector: LoginViewControllerDelegate {
+    
+    func check (inputedLogin: String, inputedPass: String) -> Bool {
+        return Checker.shared.check(inputedLogin: inputedLogin, inputedPass: inputedPass)
+    }
+    
 }
