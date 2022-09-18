@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomButton: UIButton {
+class LoginCustomButton: UIButton {
     
     override open var isHighlighted: Bool {
         didSet {

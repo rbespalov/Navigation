@@ -106,8 +106,8 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var logInButton: CustomButton = {
-        let logInButton = CustomButton(type: .system)
+    private lazy var logInButton: LoginCustomButton = {
+        let logInButton = LoginCustomButton(type: .system)
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         
