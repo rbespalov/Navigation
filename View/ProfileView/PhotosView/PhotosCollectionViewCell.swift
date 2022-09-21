@@ -1,9 +1,3 @@
-//
-//  PhotosCollectionViewCell.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 23.07.2022.
-//
 
 import UIKit
 

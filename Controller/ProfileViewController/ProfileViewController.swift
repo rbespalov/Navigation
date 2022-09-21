@@ -1,106 +1,36 @@
-//
-//  ProfileViewController.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 22.06.2022.
-//
 
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    // MARK: - Data
-    
+
     fileprivate lazy var data = ProfilePost.make()
     
     var currenUser: User? = nil
-        
-    // MARK: - Subviews
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView.init(
-            frame: .zero,
-            style: .grouped
-        )
+    private var profileView: ProfileView! {
+        guard isViewLoaded else {
+            return nil
+        }
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return tableView
-    }()
-    
-    private enum CellReuseID: String {
-        case base = "BaseTableView_ReuseID"
-        case photos = "PhotosTableView_ReuseID"
+        return (view as! ProfileView)
     }
     
-    private enum HeaderFooterReuseID: String {
-        case base = "TableSectionFooterHeaderView_ReuseID"
-    }
-    
-    // MARK: - Lifecycle
+    override func loadView() {
+            super.loadView()
+            
+            let profileView = ProfileView()
+            profileView.configure()
+            profileView.setupConstraints()
+            
+            view = profileView
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
-        addSubViews()
-        setupConstraints()
-        tuneTableView()
-        
+        profileView.tableView.dataSource = self
+        profileView.tableView.delegate = self
     }
-    
-    // MARK: - Private
- 
-    private func setupView() {
-        
-        #if DEBUG
-        self.view.backgroundColor = .green
-        #else
-        self.view.backgroundColor = .systemGray6
-        #endif
-        
-        self.navigationController?.navigationBar.isHidden = true
-    }
-    
-    private func addSubViews() {
-        view.addSubview(tableView)
-        
-    }
-    
-    private func setupConstraints() {
-        
-        let safeArea = view.safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-        ])
-    }
-    
-    private func tuneTableView() {
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .systemGray6
-        tableView.register(
-            PostTableViewCell.self,
-            forCellReuseIdentifier: CellReuseID.base.rawValue
-        )
-        
-        tableView.register(
-            PhotosTableViewCell.self,
-            forCellReuseIdentifier: CellReuseID.photos.rawValue)
-        
-        tableView.register(
-            ProfileTableHederView.self,
-            forHeaderFooterViewReuseIdentifier: HeaderFooterReuseID.base.rawValue
-        )
-
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-    }
-    
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -130,7 +60,7 @@ extension ProfileViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: CellReuseID.photos.rawValue,
+                withIdentifier: ProfileView.CellReuseID.photos.rawValue,
                 for: indexPath
             ) as? PhotosTableViewCell else {
                 fatalError("could not dequeueReusableCell")
@@ -140,7 +70,7 @@ extension ProfileViewController: UITableViewDataSource {
         }
         
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: CellReuseID.base.rawValue,
+            withIdentifier: ProfileView.CellReuseID.base.rawValue,
             for: indexPath
         ) as? PostTableViewCell else {
             fatalError("could not dequeueReusableCell")
@@ -176,7 +106,7 @@ extension ProfileViewController: UITableViewDelegate {
             
             guard let headerView =
                     tableView.dequeueReusableHeaderFooterView(
-                    withIdentifier: HeaderFooterReuseID.base.rawValue
+                        withIdentifier: ProfileView.HeaderFooterReuseID.base.rawValue
                     ) as? ProfileTableHederView else {
                         fatalError("could not dequeueReusableCell")
                     }

@@ -1,14 +1,12 @@
-//
-//  ViewController.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 22.06.2022.
-//
+
 import UIKit
 import StorageService
 
 
 class FeedViewController: UIViewController {
+    
+    var output: FeedViewOutput?
+//    var output: FeedOutput?
     
     private var feedView: FeedView! {
         guard isViewLoaded else {
@@ -41,8 +39,10 @@ class FeedViewController: UIViewController {
     }
 
     @objc private func tap() {
-        let postVC = PostViewController()
-        self.navigationController?.pushViewController(postVC, animated: true)
+        output?.showPostTapped()
+//        print("w")
+//        let postVC = PostViewController()
+//        self.navigationController?.pushViewController(postVC, animated: true)
     }
 
     @objc private func check() {
@@ -71,3 +71,14 @@ class FeedViewController: UIViewController {
     }
 }
 
+extension FeedViewController: FeedViewInput {
+
+}
+
+//extension FeedViewController: FeedOutput{
+//    func showPostTapped() {
+//        output?.showPostTapped()
+//    }
+//
+//
+//}

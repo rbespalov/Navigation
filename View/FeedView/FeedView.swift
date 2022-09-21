@@ -3,8 +3,6 @@ import UIKit
 import StorageService
 
 class FeedView: UIView {
-    
-//    lazy var newPost = Post(title: "My Post")
 
     lazy var checkTextField = UITextField()
     
@@ -83,45 +81,6 @@ class FeedView: UIView {
             ])
         }
 }
-
-//        self.navigationItem.title = "My Feed"
-//
-//        button1.setup()
-//        button2.setup()
-//        checkGuessButton.setup()
-//
-//        setupConstraint()
-//    }
-//
-//    @objc private func tap() {
-//        let postVC = PostViewController()
-//        self.navigationController?.pushViewController(postVC, animated: true)
-//    }
-//
-//    @objc private func check() {
-//        let check = FeedModel()
-//
-//        if checkTextField.text != "" {
-//            if check.check(word: checkTextField.text!) {
-//                let ac = UIAlertController(title: "Верно!", message: "Ты все сделал правильно!", preferredStyle: .alert)
-//                let OKButton = UIAlertAction(title: "OK", style: .default)
-//                ac.addAction(OKButton)
-//                present(ac, animated: true)
-//                checkLabel.backgroundColor = .green
-//            } else {
-//                let ac = UIAlertController(title: "Мимо!", message: "Не угадал!", preferredStyle: .alert)
-//                let OKButton = UIAlertAction(title: "Еще попытка", style: .default)
-//                ac.addAction(OKButton)
-//                present(ac, animated: true)
-//                checkLabel.backgroundColor = .red
-//            }
-//        } else {
-//            let ac = UIAlertController(title: "Пусто", message: "Пустое поле ввода", preferredStyle: .alert)
-//            let OKButton = UIAlertAction(title: "ОК", style: .default)
-//            ac.addAction(OKButton)
-//            present(ac, animated: true)
-//        }
-//    }
     
     
     

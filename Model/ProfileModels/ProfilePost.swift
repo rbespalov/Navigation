@@ -1,9 +1,4 @@
-//
-//  ProfilePost.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 14.07.2022.
-//
+
 
 import UIKit
 

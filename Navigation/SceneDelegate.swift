@@ -10,46 +10,59 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var rootCoordinator: AppCoordinator?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let feedVC = FeedViewController()
-        let profileVC = ProfileViewController()
-        let postVC = PostViewController()
-        let loginVC = LogInViewController()
-        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
-       
-        let userFeed = UINavigationController(rootViewController: feedVC)
-        let userProfile = UINavigationController(rootViewController: profileVC)
-        let userLogin = UINavigationController(rootViewController: loginVC)
+        guard let scene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: scene)
         
-        userFeed.navigationBar.backgroundColor = .systemGray6
-        userProfile.navigationBar.backgroundColor = .systemGray6
-
+        let tabBarcontroller = UITabBarController()
+        window.rootViewController = tabBarcontroller
+        self.window = window
         
-        let tbc = UITabBarController()
-        tbc.setViewControllers([userLogin,userFeed, userProfile], animated: true)
+        let coordinator = RootCoordinator(transitionHandler: tabBarcontroller)
+        self.rootCoordinator = coordinator
+//        let feedVC = FeedViewController()
+//        let profileVC = ProfileViewController()
+//        let postVC = PostViewController()
+//        let loginVC = LogInViewController()
+//        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
+//
+//        let userFeed = UINavigationController(rootViewController: feedVC)
+//        let userProfile = UINavigationController(rootViewController: profileVC)
+//        let userLogin = UINavigationController(rootViewController: loginVC)
+//
+//        userFeed.navigationBar.backgroundColor = .systemGray6
+//        userProfile.navigationBar.backgroundColor = .systemGray6
+//
+//
+//        let tbc = UITabBarController()
+//        tbc.setViewControllers([userLogin,userFeed, userProfile], animated: true)
+//
+//        userFeed.tabBarItem.title = "FEED"
+//        userFeed.tabBarItem.image = UIImage(systemName: "bolt.horizontal")
+//
+//        tbc.tabBar.backgroundColor = .systemGray6
+//
+//        userProfile.tabBarItem.title = "PROFILE"
+//        userProfile.tabBarItem.image = UIImage(systemName: "person.fill")
+//
+//        postVC.tabBarItem.image = UIImage(systemName: "message")
+//
+//        userLogin.tabBarItem.image = UIImage(systemName: "person.fill")
+//        userLogin.tabBarItem.title = "LOGIN"
+//        
+//        
+//        self.window = UIWindow(windowScene: windowScene)
+//        self.window?.rootViewController = tbc
+//        self.window?.makeKeyAndVisible()
         
-        userFeed.tabBarItem.title = "FEED"
-        userFeed.tabBarItem.image = UIImage(systemName: "bolt.horizontal")
-        
-        tbc.tabBar.backgroundColor = .systemGray6
-        
-        userProfile.tabBarItem.title = "PROFILE"
-        userProfile.tabBarItem.image = UIImage(systemName: "person.fill")
-
-        postVC.tabBarItem.image = UIImage(systemName: "message")
-        
-        userLogin.tabBarItem.image = UIImage(systemName: "person.fill")
-        userLogin.tabBarItem.title = "LOGIN"
-        
-        
-        self.window = UIWindow(windowScene: windowScene)
-        self.window?.rootViewController = tbc
-        self.window?.makeKeyAndVisible()
+        window.makeKeyAndVisible()
+        coordinator.start()
         
     }
 
