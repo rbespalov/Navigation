@@ -5,6 +5,7 @@ import UIKit
 final class RootCoordinator: AppCoordinator {
     
     private weak var transitionHandler: UITabBarController?
+    private weak var navigationController: UINavigationController?
     
     var childs: [AppCoordinator] = []
     
@@ -33,30 +34,21 @@ final class RootCoordinator: AppCoordinator {
         loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
         
         let feedTransitionHandler = UINavigationController()
+        
         let feedCoordinator = FeedCoordinator(transitionHandler: feedTransitionHandler)
-        let feedVC = feedCoordinator.makeFeedVC()
+        feedCoordinator.makeFeedVC()
+        let feedVC = feedCoordinator
+        childs.append(feedCoordinator)
         
+        let profileTransitionHandler = UINavigationController()
         
-//        let feed = FeedAssembly().create(output: self)
+        let profileCoordinator = ProfileCoordinator(transitionHandler: profileTransitionHandler)
+        profileCoordinator.makeProfileVC()
+        let profileVC = profileCoordinator
+        childs.append(profileCoordinator)
         
-        
-        let profileVC = ProfileViewController()
-        let profileNC = UINavigationController(rootViewController: profileVC)
-        profileNC.navigationBar.backgroundColor = .systemGray6
-        profileNC.tabBarItem.title = "PROFILE"
-        profileNC.tabBarItem.image = UIImage(systemName: "person.fill")
         
         transitionHandler?.tabBar.backgroundColor = .systemGray6
-        transitionHandler?.setViewControllers([loginNC, feedVC, profileNC], animated: true)
-    }
-    
-    func showPost() {
-        print ("test")
-    }
-}
-
-extension RootCoordinator: FeedOutput {
-    func showPostTapped() {
-        showPost()
+        transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
     }
 }
