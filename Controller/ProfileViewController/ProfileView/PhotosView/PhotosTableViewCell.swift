@@ -1,9 +1,4 @@
-//
-//  PhotosTableViewCell.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 21.07.2022.
-//
+
 
 import UIKit
 

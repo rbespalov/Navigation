@@ -1,14 +1,11 @@
-//
-//  ViewController.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 22.06.2022.
-//
+
 import UIKit
 import StorageService
 
 
 class FeedViewController: UIViewController {
+    
+    var output: FeedOutput?
     
     private lazy var checkTextField: UITextField = {
         let field = UITextField()
@@ -23,11 +20,38 @@ class FeedViewController: UIViewController {
         return field
     }()
     
-    private lazy var checkGuessButton = CustomButton(action: check, color: .systemGray6, title: "Check Password", titleColor: .black)
+    private lazy var checkGuessButton = CustomButton(color: .systemGray6, title: "Check Password", titleColor: .black) {
+        let check = FeedModel()
+        
+        if self.checkTextField.text != "" {
+            if check.check(word: self.checkTextField.text!) {
+                let ac = UIAlertController(title: "Верно!", message: "Ты все сделал правильно!", preferredStyle: .alert)
+                let OKButton = UIAlertAction(title: "OK", style: .default)
+                ac.addAction(OKButton)
+                self.present(ac, animated: true)
+                self.checkLabel.backgroundColor = .green
+            } else {
+                let ac = UIAlertController(title: "Мимо!", message: "Не угадал!", preferredStyle: .alert)
+                let OKButton = UIAlertAction(title: "ЕЩе попытка", style: .default)
+                ac.addAction(OKButton)
+                self.present(ac, animated: true)
+                self.checkLabel.backgroundColor = .red
+            }
+        } else {
+            let ac = UIAlertController(title: "Пусто", message: "Пустое поле ввода", preferredStyle: .alert)
+            let OKButton = UIAlertAction(title: "ОК", style: .default)
+            ac.addAction(OKButton)
+            self.present(ac, animated: true)
+        }
+    }
     
-    private lazy var button1 = CustomButton(action: tap, color: .orange, title: "ShowPost", titleColor: .white)
+    private lazy var button1 = CustomButton(color: .orange, title: "ShowPost", titleColor: .white) {
+        self.showPost()
+    }
     
-    private lazy var button2 = CustomButton(action: tap, color: .cyan, title: "Show post again", titleColor: .black)
+    private lazy var button2 = CustomButton(color: .cyan, title: "Show post again", titleColor: .black) {
+        self.showPost()
+    }
     
     private lazy var checkLabel: UILabel = {
         let label = UILabel()
@@ -71,10 +95,6 @@ class FeedViewController: UIViewController {
         checkGuessButton.layer.borderColor = UIColor.black.cgColor
         checkGuessButton.layer.borderWidth = 1
         checkTextField.placeholder = "Password"
-        
-        button1.setup()
-        button2.setup()
-        checkGuessButton.setup()
 
         setupConstraint()
     }
@@ -103,13 +123,12 @@ class FeedViewController: UIViewController {
             stackView.topAnchor.constraint(equalTo: checkLabel.bottomAnchor, constant: 10),
             stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10),
             stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
-            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),        
+            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),
             ])
         }
     
     @objc private func tap() {
-        let postVC = PostViewController()
-        self.navigationController?.pushViewController(postVC, animated: true)
+        output?.showPost()
     }
     
     @objc private func check() {
@@ -138,3 +157,9 @@ class FeedViewController: UIViewController {
     }
 }
 
+extension FeedViewController: FeedOutput {
+    
+    func showPost() {
+        output?.showPost()
+    }
+}

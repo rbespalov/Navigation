@@ -1,17 +1,9 @@
-//
-//  PhotosViewController.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 21.07.2022.
-//
 
 import UIKit
 import iOSIntPackage
 
 final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
-    
-    // MARK: - Data
     
     fileprivate lazy var photos: [Photo] = Photo.makePhoto()
     
@@ -20,78 +12,40 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     var imagesFromPublisher: [UIImage] = []
     
     let photo: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!, UIImage(named: "6")!, UIImage(named: "7")!, UIImage(named: "8")!, UIImage(named: "9")!, UIImage(named: "10")!]
-    
-    
-    // MARK: Subviews
-    
-    private enum CollectionCellReuseID: String {
-        case base = "CollectionCellReuseID_ReuseID"
+
+    private var photosView: PhotosView! {
+        guard isViewLoaded else {
+            return nil
+        }
+        
+        return (view as! PhotosView)
     }
     
-
-    private let collectionView: UICollectionView = {
-        let viewLayout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(
-            frame: .zero,
-            collectionViewLayout: viewLayout
-        )
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .green
-        
-        collectionView.register(
-            PhotosCollectionViewCell.self,
-            forCellWithReuseIdentifier: CollectionCellReuseID.base.rawValue
-        )
-        
-        return collectionView
-    }()
-    
-    // MARK: - Lifecycle
+    override func loadView() {
+            super.loadView()
+            
+            let photosView = PhotosView()
+            photosView.configure()
+            photosView.setupConstraints()
+            
+            view = photosView
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Photo Gallery"
         
-        setupView()
-        setupSubviews()
-        setupLayouts()
+        photosView.collectionView.dataSource = self
+        photosView.collectionView.delegate = self
+
         facade.subscribe(self)
-        facade.addImagesWithTimer(time: 0.5, repeat: 15, userImages: photo)
+        facade.addImagesWithTimer(time: 0.2, repeat: 20, userImages: photo)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
         facade.removeSubscription(for: self)
-    }
-    
-    // MARK: - Private
-    
-    private func setupView() {
-        view.backgroundColor = .systemBackground
-        title = "Photo Gallery"
-    }
-    
-    private func setupSubviews() {
-        setupCollectionview()
-    }
-    
-    private func setupCollectionview() {
-        view.addSubview(collectionView)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .systemBackground
-    }
-    
-    private func setupLayouts() {
-        let safeAreaGuide = view.safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
-        ])
     }
 }
 
@@ -109,7 +63,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CollectionCellReuseID.base.rawValue,
+            withReuseIdentifier: PhotosView.CollectionCellReuseID.base.rawValue,
             for: indexPath) as? PhotosCollectionViewCell else {
                 fatalError("could not dequeueReusableCell")
             }
@@ -184,7 +138,7 @@ extension PhotosViewController {
     func receive(images: [UIImage]) {
         
         imagesFromPublisher = images
-        collectionView.reloadData()
+        photosView.collectionView.reloadData()
     }
     
 }

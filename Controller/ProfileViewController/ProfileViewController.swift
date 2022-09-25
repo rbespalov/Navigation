@@ -1,9 +1,3 @@
-//
-//  ProfileViewController.swift
-//  Navigation
-//
-//  Created by Роман Беспалов on 22.06.2022.
-//
 
 import UIKit
 
@@ -11,9 +5,17 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Data
     
-    fileprivate lazy var data = ProfilePost.make()
+    private var data = ProfilePost.make()
     
-    var currenUser: User? = nil
+    var viewModel: ProfileVIewModel! {
+        didSet {
+            self.data = viewModel.model ?? []
+        }
+    }
+    
+    var output: ProfileOutput?
+    
+    var currenUser: User? = User(login: "", fullName: "ERROR", avatar: UIImage(named: "logo")!, status: "NOT LOGINED")
         
     // MARK: - Subviews
     
@@ -195,13 +197,14 @@ extension ProfileViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         if indexPath.section == 0 {
-            
-            let nextViewController = PhotosViewController()
-            navigationController?.navigationBar.isHidden = false
-            navigationController?.pushViewController(
-                nextViewController, animated: true
-                
-            )
+            output?.showPhotos()
         }
     }
 }
+
+extension ProfileViewController: ProfileOutput {
+    func showPhotos() {
+        output?.showPhotos()
+    }
+}
+
