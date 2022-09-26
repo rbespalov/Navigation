@@ -2,17 +2,8 @@
 import UIKit
 import iOSIntPackage
 
-final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+final class PhotosViewController: UIViewController {
     
-    
-    fileprivate lazy var photos: [Photo] = Photo.makePhoto()
-    
-    let facade = ImagePublisherFacade()
-    
-    var imagesFromPublisher: [UIImage] = []
-    
-    let photo: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!, UIImage(named: "6")!, UIImage(named: "7")!, UIImage(named: "8")!, UIImage(named: "9")!, UIImage(named: "10")!]
-
     private var photosView: PhotosView! {
         guard isViewLoaded else {
             return nil
@@ -31,21 +22,63 @@ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
             view = photosView
         }
     
+    
+    var viewModel: PhotosViewModel! {
+        didSet {
+            self.viewModel.imageChanged = { [ weak self ] viewModel in
+                self?.setupImages(imagesArray: viewModel.images)
+            }
+        }
+    }
+    
+    fileprivate lazy var images: [UIImage] = Images.imageName
+    
+    private var imageArray: [UIImage] = []
+    
+    private func setupImages(imagesArray: [UIImage]?) {
+
+        
+        let processor = ImageProcessor()
+        let startTime = Date()
+        processor.processImagesOnThread(sourceImages: imagesArray!, filter: .noir, qos: .utility) { newImage in
+            let finishTime = Date()
+            let result = finishTime.timeIntervalSince(startTime)
+            print (result)
+            
+//            Time Intervals
+//                .background - 2.45
+//                .default - 0.67
+//                .userInitiated - 0.68
+//                .userInteractive - 0.69
+//                .utility - 0.67
+            
+            newImage.forEach {
+                guard let image = $0 else {return }
+                self.imageArray.append(UIImage(cgImage: image))
+            }
+            DispatchQueue.main.async {
+                self.photosView.collectionView.reloadData()
+            }
+        }
+    }
+
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photo Gallery"
-        
+        viewModel.makeArray()
         photosView.collectionView.dataSource = self
         photosView.collectionView.delegate = self
 
-        facade.subscribe(self)
-        facade.addImagesWithTimer(time: 0.2, repeat: 20, userImages: photo)
+//        facade.subscribe(self)
+//        facade.addImagesWithTimer(time: 0.2, repeat: 20, userImages: photo)
     }
+    
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        facade.removeSubscription(for: self)
+//        facade.removeSubscription(for: self)
     }
 }
 
@@ -55,7 +88,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        imagesFromPublisher.count
+        imageArray.count
     }
     
     func collectionView(
@@ -67,10 +100,9 @@ extension PhotosViewController: UICollectionViewDataSource {
             for: indexPath) as? PhotosCollectionViewCell else {
                 fatalError("could not dequeueReusableCell")
             }
-        
-//        let photo = photos[indexPath.row]
-        cell.photoImage.image = imagesFromPublisher[indexPath.row]
-//        cell.setup1(with: photo)
+
+        let image = imageArray[indexPath.row]
+        cell.setup1(with: image)
         
         return cell  
     }
@@ -131,14 +163,4 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         8
     }
-}
-
-extension PhotosViewController {
-    
-    func receive(images: [UIImage]) {
-        
-        imagesFromPublisher = images
-        photosView.collectionView.reloadData()
-    }
-    
 }

@@ -1,5 +1,6 @@
 
 import UIKit
+import iOSIntPackage
 
 final class PhotosCollectionViewCell: UICollectionViewCell {
     
@@ -50,11 +51,16 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
     // MARK: - Public
     
     func setup1(
-        with photo: Photo
+        with photo: UIImage
     ) {
-        photoImage.image = UIImage(named: photo.photoName)
+        photoImage.image = photo
+//        if let image = UIImage(named: photo.photoName) {
+//            ImageProcessor().processImagesOnThread(sourceImages: <#T##[UIImage]#>, filter: .colorInvert, qos: .background) { photoImage.image = $0
+//            }
+//        }
     }
     
     
     
 }
+
