@@ -9,6 +9,16 @@ class LogInViewController: UIViewController {
     
     // MARK: - Suviews
     
+    private lazy var pickPassButton: UIButton = {
+       let buttoon = UIButton()
+        buttoon.translatesAutoresizingMaskIntoConstraints = false
+        buttoon.setTitle("Pick up a password", for: .normal)
+        buttoon.layer.cornerRadius = 10
+        buttoon.backgroundColor = .orange
+        buttoon.addTarget(self, action: #selector(pickPass), for: .touchUpInside)
+        return buttoon
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -63,7 +73,7 @@ class LogInViewController: UIViewController {
     }()
     
     
-    private lazy var passwordTextField: UITextField = { [unowned self] in
+    lazy var passwordTextField: UITextField = { [unowned self] in
         let passwordTextField = UITextField()
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +92,7 @@ class LogInViewController: UIViewController {
         passwordTextField.returnKeyType = UIReturnKeyType.done
         passwordTextField.autocorrectionType = .no
         passwordTextField.keyboardType = .namePhonePad
-        passwordTextField.isSecureTextEntry = true
+        passwordTextField.isSecureTextEntry = false
         
         passwordTextField.delegate = self
 
@@ -119,6 +129,14 @@ class LogInViewController: UIViewController {
         logInButton.backgroundColor = UIColor(named: "СolorForLogo")
         
         return logInButton
+    }()
+//
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.style = UIActivityIndicatorView.Style.medium
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     // MARK: - Lifecycle
@@ -167,6 +185,8 @@ class LogInViewController: UIViewController {
         contentView.addSubview(stackView)
         contentView.addSubview(logoImage)
         contentView.addSubview(logInButton)
+        contentView.addSubview(pickPassButton)
+        passwordTextField.addSubview(indicator)
     }
     
     private func setupConstraints() {
@@ -199,6 +219,14 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            pickPassButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            pickPassButton.heightAnchor.constraint(equalToConstant: 50),
+            pickPassButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            pickPassButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            indicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            indicator.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -5)
         ])
         contentView.subviews.last?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
@@ -224,6 +252,38 @@ class LogInViewController: UIViewController {
     private func removeKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
+    }
+    
+    private func bruteForce(passwordToUnlock: String) {
+        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
+        let MAXIMUM_PASSWORD_SIZE: Int = 4
+        let bruteForce = BruteForse()
+        var password: String = ""
+        let queue = DispatchQueue(label: "rbespalov.queue", qos: .utility)
+        let workItem = DispatchWorkItem() {
+        while password.count <= MAXIMUM_PASSWORD_SIZE {
+            password = bruteForce.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
+            if passwordToUnlock == password {
+                DispatchQueue.main.async {
+                    self.passwordTextField.text = passwordToUnlock
+                    self.indicator.stopAnimating()
+                    }
+                }
+            }
+        }
+        queue.async(execute: workItem)
+    }
+
+    
+    @objc private func pickPass() {
+        func randomString(length: Int) -> String {
+          let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+          return String((0..<length).map{ _ in letters.randomElement()! })
+        }
+        let randomString: String = randomString(length: 4)
+        
+        bruteForce(passwordToUnlock: randomString)
+        indicator.startAnimating()
     }
     
     @objc private func tap() {
@@ -273,3 +333,5 @@ struct LoginInspector: LoginViewControllerDelegate {
     }
     
 }
+
+
