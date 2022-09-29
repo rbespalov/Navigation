@@ -26,7 +26,7 @@ final class ProfileCoordinator: AppCoordinator {
     }
     
     func toPhotosVC() {
-        let nextViewController = PhotosViewController()
+        let nextViewController = profileAssembly.createPhotoVC()
         transitionHandler.navigationBar.isHidden = false
         transitionHandler.pushViewController(
             nextViewController, animated: true
