@@ -11,6 +11,7 @@
 		D6002D4B28BD43B000A33029 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4A28BD43B000A33029 /* UserService.swift */; };
 		D6002D4D28CA229C00A33029 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4C28CA229C00A33029 /* CurrentUserService.swift */; };
 		D6002D4F28CB94AC00A33029 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6002D4E28CB94AC00A33029 /* TestUserService.swift */; };
+		D601433D28E4D6570030D17E /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = D601433C28E4D6570030D17E /* BruteForce.swift */; };
 		D6212A0628898150000D72F9 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A0528898150000D72F9 /* PhotosTableViewCell.swift */; };
 		D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A0728898E43000D72F9 /* PhotosViewController.swift */; };
 		D6212A0A2889A9C2000D72F9 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A092889A9C1000D72F9 /* Photo.swift */; };
@@ -80,6 +81,7 @@
 		D6002D4A28BD43B000A33029 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		D6002D4C28CA229C00A33029 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		D6002D4E28CB94AC00A33029 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		D601433C28E4D6570030D17E /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		D6212A0528898150000D72F9 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		D6212A0728898E43000D72F9 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		D6212A092889A9C1000D72F9 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				D6B8437028CF689300E4261D /* CustomButton.swift */,
 				D671EED028D8E1BC00C0C1A8 /* Assembly.swift */,
 				D671EEC928D8C43B00C0C1A8 /* RootCoordinator.swift */,
+				D601433C28E4D6570030D17E /* BruteForce.swift */,
 				D671EEAE28D784E100C0C1A8 /* Controller */,
 				D65EA47E286395A300DD5B22 /* Navigation */,
 				D660C7C128B3D52900AED09E /* StorageService */,
@@ -414,6 +417,7 @@
 				D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */,
 				D6212A0628898150000D72F9 /* PhotosTableViewCell.swift in Sources */,
 				D68B0B8C28DF4A9C007462E2 /* ProfileCoordinator.swift in Sources */,
+				D601433D28E4D6570030D17E /* BruteForce.swift in Sources */,
 				D671EEBA28D7A59D00C0C1A8 /* InfoViewController.swift in Sources */,
 				D6FC765E28CD07B100D76D58 /* LoginFactory.swift in Sources */,
 				D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */,
