@@ -43,6 +43,9 @@ class LogInViewController: UIViewController {
         let image = UIImage(named: "logo")
         let logoImage = UIImageView(image: image!)
         logoImage.translatesAutoresizingMaskIntoConstraints = false
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(changeLogoTimer))
+        logoImage.addGestureRecognizer(gesture)
+        logoImage.isUserInteractionEnabled = true
         
         return logoImage
     }()
@@ -174,6 +177,10 @@ class LogInViewController: UIViewController {
     
     // MARK - Private
     
+    @objc private func changeLogoTimer() {
+        print ("works")
+    }
+    
     private func setupView() {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
@@ -226,7 +233,7 @@ class LogInViewController: UIViewController {
             pickPassButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             indicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
-            indicator.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -5)
+            indicator.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor)
         ])
         contentView.subviews.last?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
@@ -255,25 +262,41 @@ class LogInViewController: UIViewController {
     }
     
     private func bruteForce(passwordToUnlock: String) {
+        
+        let timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(self.setupTimer),
+            userInfo: nil,
+            repeats: true
+        )
+        
         let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
-        let MAXIMUM_PASSWORD_SIZE: Int = 4
         let bruteForce = BruteForse()
         var password: String = ""
         let queue = DispatchQueue(label: "rbespalov.queue", qos: .utility)
         let workItem = DispatchWorkItem() {
-        while password.count <= MAXIMUM_PASSWORD_SIZE {
+            while password.count <= passwordToUnlock.count {
             password = bruteForce.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
             if passwordToUnlock == password {
                 DispatchQueue.main.async {
                     self.passwordTextField.text = passwordToUnlock
                     self.indicator.stopAnimating()
+                    timer.invalidate()
+                    self.loginTextField.text = ""
                     }
                 }
             }
         }
         queue.async(execute: workItem)
     }
-
+    
+    private var counter: Int = 0
+    
+    @objc private func setupTimer() {
+        counter += 1
+        loginTextField.text = "Brutforcing pass for \(counter) seconds"
+    }
     
     @objc private func pickPass() {
         func randomString(length: Int) -> String {
