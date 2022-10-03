@@ -7,6 +7,11 @@ class FeedViewController: UIViewController {
     
     var output: FeedOutput?
     
+    private enum CustomError: Error {
+        case emptyTextField
+        case wrongPassword
+    }
+    
     private lazy var checkTextField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -20,29 +25,10 @@ class FeedViewController: UIViewController {
         return field
     }()
     
+
+    
     private lazy var checkGuessButton = CustomButton(color: .systemGray6, title: "Check Password", titleColor: .black) {
-        let check = FeedModel()
-        
-        if self.checkTextField.text != "" {
-            if check.check(word: self.checkTextField.text!) {
-                let ac = UIAlertController(title: "Верно!", message: "Ты все сделал правильно!", preferredStyle: .alert)
-                let OKButton = UIAlertAction(title: "OK", style: .default)
-                ac.addAction(OKButton)
-                self.present(ac, animated: true)
-                self.checkLabel.backgroundColor = .green
-            } else {
-                let ac = UIAlertController(title: "Мимо!", message: "Не угадал!", preferredStyle: .alert)
-                let OKButton = UIAlertAction(title: "ЕЩе попытка", style: .default)
-                ac.addAction(OKButton)
-                self.present(ac, animated: true)
-                self.checkLabel.backgroundColor = .red
-            }
-        } else {
-            let ac = UIAlertController(title: "Пусто", message: "Пустое поле ввода", preferredStyle: .alert)
-            let OKButton = UIAlertAction(title: "ОК", style: .default)
-            ac.addAction(OKButton)
-            self.present(ac, animated: true)
-        }
+        self.checkPass()
     }
     
     private lazy var button1 = CustomButton(color: .orange, title: "ShowPost", titleColor: .white) {
@@ -126,6 +112,42 @@ class FeedViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),
             ])
         }
+    
+    private func isPassCorrect() throws {
+        let check = FeedModel()
+        
+        if self.checkTextField.text != "" {
+            if check.check(word: self.checkTextField.text!) {
+                let ac = UIAlertController(title: "Верно!", message: "Ты все сделал правильно!", preferredStyle: .alert)
+                let OKButton = UIAlertAction(title: "OK", style: .default)
+                ac.addAction(OKButton)
+                self.present(ac, animated: true)
+                self.checkLabel.backgroundColor = .green
+            } else {
+                throw CustomError.wrongPassword
+            }
+        } else {
+            throw CustomError.emptyTextField
+        }
+    }
+    
+    private func checkPass() {
+        do {
+            try isPassCorrect()
+        } catch CustomError.emptyTextField {
+            let ac = UIAlertController(title: "Пусто", message: "Пустое поле ввода", preferredStyle: .alert)
+            let OKButton = UIAlertAction(title: "ОК", style: .default)
+            ac.addAction(OKButton)
+            self.present(ac, animated: true)
+        } catch {
+            let ac = UIAlertController(title: "Мимо!", message: "Не угадал!", preferredStyle: .alert)
+            let OKButton = UIAlertAction(title: "ЕЩе попытка", style: .default)
+            ac.addAction(OKButton)
+            self.present(ac, animated: true)
+            self.checkLabel.backgroundColor = .red
+        }
+    }
+    
     
     @objc private func tap() {
         output?.showPost()

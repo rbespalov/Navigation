@@ -266,7 +266,7 @@ class LogInViewController: UIViewController {
         let timer = Timer.scheduledTimer(
             timeInterval: 1,
             target: self,
-            selector: #selector(self.setupTimer),
+            selector: #selector(self.updateTimeCounter),
             userInfo: nil,
             repeats: true
         )
@@ -283,7 +283,7 @@ class LogInViewController: UIViewController {
                     self.passwordTextField.text = passwordToUnlock
                     self.indicator.stopAnimating()
                     timer.invalidate()
-                    self.loginTextField.text = ""
+                    self.pickPassButton.setTitle("Pick up a password", for: .normal)
                     }
                 }
             }
@@ -293,9 +293,9 @@ class LogInViewController: UIViewController {
     
     private var counter: Int = 0
     
-    @objc private func setupTimer() {
+    @objc private func updateTimeCounter() {
         counter += 1
-        loginTextField.text = "Brutforcing pass for \(counter) seconds"
+        pickPassButton.setTitle("Brutforcing pass for \(counter) seconds", for: .normal)
     }
     
     @objc private func pickPass() {
@@ -317,7 +317,6 @@ class LogInViewController: UIViewController {
         let user = CurrentUserService().currentUser
         #endif
         
-
         
         guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!)  else { return }
         
