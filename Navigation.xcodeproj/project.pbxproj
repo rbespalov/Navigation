@@ -26,6 +26,9 @@
 		D660C7C728B3D52900AED09E /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D660C7C028B3D52900AED09E /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D660C7CB28B3D82B00AED09E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6644EB6286762AE005D69A9 /* Post.swift */; };
 		D6644EB52867585E005D69A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6644EB42867585E005D69A9 /* PostViewController.swift */; };
+		D6709DB228F1EA7E00F9F5B6 /* Atoma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6709DB128F1EA7E00F9F5B6 /* Atoma.mp3 */; };
+		D6709DB428F1EA8700F9F5B6 /* Hypa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6709DB328F1EA8700F9F5B6 /* Hypa.mp3 */; };
+		D6709DB628F1EA8D00F9F5B6 /* Weak.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6709DB528F1EA8D00F9F5B6 /* Weak.mp3 */; };
 		D671EEB628D7A0BE00C0C1A8 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671EEB528D7A0BE00C0C1A8 /* InfoView.swift */; };
 		D671EEBA28D7A59D00C0C1A8 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671EEB928D7A59D00C0C1A8 /* InfoViewController.swift */; };
 		D671EEC428D7B0B400C0C1A8 /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671EEC328D7B0B400C0C1A8 /* PhotosView.swift */; };
@@ -35,6 +38,8 @@
 		D671EEDB28DB7B3800C0C1A8 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671EEDA28DB7B3800C0C1A8 /* FeedCoordinator.swift */; };
 		D6734AAD2863961E00E4E76C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6734AAC2863961E00E4E76C /* ProfileViewController.swift */; };
 		D67BA35228CE0D33001ACC4F /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = D67BA35128CE0D33001ACC4F /* iOSIntPackage */; };
+		D683619C28ECC72400E880EC /* Carnage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D683619B28ECC72400E880EC /* Carnage.mp3 */; };
+		D683619E28EE1A4000E880EC /* Duality.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D683619D28EE1A4000E880EC /* Duality.mp3 */; };
 		D68B0B8628DE2340007462E2 /* FeedOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8528DE2340007462E2 /* FeedOutput.swift */; };
 		D68B0B8A28DF45FE007462E2 /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8928DF45FE007462E2 /* ProfileOutput.swift */; };
 		D68B0B8C28DF4A9C007462E2 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8B28DF4A9C007462E2 /* ProfileCoordinator.swift */; };
@@ -97,6 +102,9 @@
 		D660C7C228B3D52900AED09E /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		D6644EB42867585E005D69A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D6644EB6286762AE005D69A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D6709DB128F1EA7E00F9F5B6 /* Atoma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Atoma.mp3; sourceTree = "<group>"; };
+		D6709DB328F1EA8700F9F5B6 /* Hypa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hypa.mp3; sourceTree = "<group>"; };
+		D6709DB528F1EA8D00F9F5B6 /* Weak.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Weak.mp3; sourceTree = "<group>"; };
 		D671EEB528D7A0BE00C0C1A8 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D671EEB928D7A59D00C0C1A8 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D671EEC328D7B0B400C0C1A8 /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
@@ -105,6 +113,8 @@
 		D671EED028D8E1BC00C0C1A8 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		D671EEDA28DB7B3800C0C1A8 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		D6734AAC2863961E00E4E76C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D683619B28ECC72400E880EC /* Carnage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Carnage.mp3; sourceTree = "<group>"; };
+		D683619D28EE1A4000E880EC /* Duality.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Duality.mp3; sourceTree = "<group>"; };
 		D68B0B8528DE2340007462E2 /* FeedOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOutput.swift; sourceTree = "<group>"; };
 		D68B0B8928DF45FE007462E2 /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOutput.swift; sourceTree = "<group>"; };
 		D68B0B8B28DF4A9C007462E2 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -172,6 +182,7 @@
 				D671EEC728D8C3A000C0C1A8 /* AppCoordinator.swift */,
 				D65EA481286395A300DD5B22 /* SceneDelegate.swift */,
 				D65EA488286395A300DD5B22 /* Assets.xcassets */,
+				D6BA8CA328F35075000AE271 /* Audio */,
 				D65EA48A286395A300DD5B22 /* LaunchScreen.storyboard */,
 				D65EA48D286395A300DD5B22 /* Info.plist */,
 			);
@@ -279,6 +290,18 @@
 			path = PhotosViewController;
 			sourceTree = "<group>";
 		};
+		D6BA8CA328F35075000AE271 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D6709DB328F1EA8700F9F5B6 /* Hypa.mp3 */,
+				D6709DB528F1EA8D00F9F5B6 /* Weak.mp3 */,
+				D6709DB128F1EA7E00F9F5B6 /* Atoma.mp3 */,
+				D683619D28EE1A4000E880EC /* Duality.mp3 */,
+				D683619B28ECC72400E880EC /* Carnage.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -378,8 +401,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6709DB628F1EA8D00F9F5B6 /* Weak.mp3 in Resources */,
+				D6709DB428F1EA8700F9F5B6 /* Hypa.mp3 in Resources */,
 				D65EA48C286395A300DD5B22 /* LaunchScreen.storyboard in Resources */,
+				D683619E28EE1A4000E880EC /* Duality.mp3 in Resources */,
 				D65EA489286395A300DD5B22 /* Assets.xcassets in Resources */,
+				D683619C28ECC72400E880EC /* Carnage.mp3 in Resources */,
+				D6709DB228F1EA7E00F9F5B6 /* Atoma.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +545,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -572,7 +600,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
