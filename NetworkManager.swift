@@ -23,7 +23,7 @@ struct NetworkManager {
                 
         let session = URLSession(configuration: .default)
         
-        let task = session.dataTask(with: URL(string: appConfiguration!.rawValue)!) { data, respose, error in
+        let task = session.dataTask(with: URL(string: configuration.rawValue)!) { data, respose, error in
             
             if let error {
                 print(error.localizedDescription)
@@ -49,7 +49,7 @@ struct NetworkManager {
                 print("\((respose as! HTTPURLResponse).statusCode)")
                 return
                 
-                // erroe - The Internet connection appears to be offline.
+                // error - The Internet connection appears to be offline.
                 
             }
             catch {
