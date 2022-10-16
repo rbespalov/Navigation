@@ -24,7 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let coordinator = RootCoordinator(transitionHandler: tabBarcontroller)
         self.rootCoordinator = coordinator
-//
+        
+        appConfiguration = AppConfiguration.allCases.randomElement()
+        NetworkManager.request(for: appConfiguration!)
+        
         window.makeKeyAndVisible()
         coordinator.start()
         
