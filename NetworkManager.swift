@@ -22,18 +22,31 @@ struct NetworkManager {
     static func request(for configuration: AppConfiguration) {
                 
         let session = URLSession(configuration: .default)
+                
         
-        let task = session.dataTask(with: URL(string: configuration.rawValue)!) { data, respose, error in
+        let task = session.dataTask(with: URL(string: configuration.rawValue)! ) { data, response, error in
             
             if let error {
                 print(error.localizedDescription)
                 return
             }
             
-            if (respose as! HTTPURLResponse).statusCode != 200 {
-                print ("Error, statuse code is \((respose as! HTTPURLResponse).statusCode)")
+            guard let resp = response as? HTTPURLResponse else {
+                print("Network error")
                 return
             }
+                    
+            if resp.statusCode != 200 {
+                print ("Error, statuse code is \(resp.statusCode)")
+                return
+            }
+                    
+                    
+                    
+//            if (response as! HTTPURLResponse).statusCode != 200 {
+//                print ("Error, statuse code is \((response as! HTTPURLResponse).statusCode)")
+//                return
+//            }
             
             guard let data else {
                 print("No data")
@@ -44,15 +57,14 @@ struct NetworkManager {
                 let answer = try JSONSerialization.jsonObject(with: data)
                 print(answer)
                 print("===============")
-                print("\((respose as! HTTPURLResponse).allHeaderFields)")
+                print("\(resp.allHeaderFields)")
                 print("===============")
-                print("\((respose as! HTTPURLResponse).statusCode)")
+                print("\(resp.statusCode)")
                 return
                 
                 // error - The Internet connection appears to be offline.
                 
-            }
-            catch {
+            } catch {
                 print(error.localizedDescription.debugDescription)
             }
         }

@@ -11,6 +11,7 @@ class InfoViewController: UIViewController {
         return (view as! InfoView)
     }
     
+    
     override func loadView() {
             super.loadView()
             
@@ -24,6 +25,7 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Info"
         setupActions()
+        self.view.backgroundColor = .link
     }
     
     private func setupActions() {
