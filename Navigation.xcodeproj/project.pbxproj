@@ -54,6 +54,7 @@
 		D6D90DED2880300F005D8B13 /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */; };
 		D6D90DEF288045A4005D8B13 /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DEE288045A4005D8B13 /* ProfilePost.swift */; };
 		D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */; };
+		D6EB2DDB28FAFD7C0027DB31 /* ModelForHW2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EB2DDA28FAFD7C0027DB31 /* ModelForHW2.swift */; };
 		D6FC765C28CC8A5D00D76D58 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC765B28CC8A5D00D76D58 /* Checker.swift */; };
 		D6FC765E28CD07B100D76D58 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC765D28CD07B100D76D58 /* LoginFactory.swift */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,7 @@
 		D6D90DEC2880300F005D8B13 /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
 		D6D90DEE288045A4005D8B13 /* ProfilePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
 		D6D90DF22880580E005D8B13 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		D6EB2DDA28FAFD7C0027DB31 /* ModelForHW2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelForHW2.swift; sourceTree = "<group>"; };
 		D6FC765B28CC8A5D00D76D58 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		D6FC765D28CD07B100D76D58 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 			children = (
 				D6B8437028CF689300E4261D /* CustomButton.swift */,
 				D656896328F7443B00162B31 /* NetworkManager.swift */,
+				D6EB2DDA28FAFD7C0027DB31 /* ModelForHW2.swift */,
 				D671EED028D8E1BC00C0C1A8 /* Assembly.swift */,
 				D671EEC928D8C43B00C0C1A8 /* RootCoordinator.swift */,
 				D601433C28E4D6570030D17E /* BruteForce.swift */,
@@ -451,6 +454,7 @@
 				D68B0B8C28DF4A9C007462E2 /* ProfileCoordinator.swift in Sources */,
 				D601433D28E4D6570030D17E /* BruteForce.swift in Sources */,
 				D671EEBA28D7A59D00C0C1A8 /* InfoViewController.swift in Sources */,
+				D6EB2DDB28FAFD7C0027DB31 /* ModelForHW2.swift in Sources */,
 				D6FC765E28CD07B100D76D58 /* LoginFactory.swift in Sources */,
 				D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */,
 				D671EEDB28DB7B3800C0C1A8 /* FeedCoordinator.swift in Sources */,
