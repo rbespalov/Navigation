@@ -2,6 +2,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
@@ -540,25 +541,57 @@ class LogInViewController: UIViewController {
     
     @objc private func tap() {
         
-        #if DEBUG
-        let user = TestUserService().testUser
-        #else
-        let user = CurrentUserService().currentUser
-        #endif
-        
-        
-        guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!)  else { return }
-        
-        if accessed {
-            let profleVC = ProfileViewController()
-            profleVC.currenUser = user
-            self.navigationController?.pushViewController(profleVC, animated: true)
-        } else {
-            let alert = UIAlertController(title: "Alert", message: "Wrong login or password", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-            self.present(alert, animated: true)
-            
+        if loginTextField.text == "" || passwordTextField.text == "" {
+            let ac = UIAlertController(title: "Oooops", message: "One of fields is empty", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(ac, animated: true)
         }
+        
+        guard let email = loginTextField.text,
+              let password = passwordTextField.text else {
+                  print("Missing field data")
+            return
+              }
+        
+        loginDelegate?.chechCredentials(inputedLogin: email, inputedPass: password, completion: { reslt in
+            
+            switch reslt {
+            case .invalidPassword:
+                let ac = UIAlertController(title: "Try again", message: "Invalid oassword", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(ac, animated: true)
+                
+            case .logined:
+                let profileVC = ProfileViewController()
+                let loginnedUser = User(login: email, fullName: "My Name", avatar: UIImage(named: "user")!, status: "Logined!!!")
+                profileVC.currenUser = loginnedUser
+                self.navigationController?.pushViewController(profileVC, animated: true)
+                
+            case .invalidEmailFormat:
+                let ac = UIAlertController(title: "Try again", message: "Invalid email format", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(ac, animated: true)
+                
+            case .userDoesNotExist:
+                let ac = UIAlertController(title: "User does not exist", message: "Would you like to create?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                ac.addAction(UIAlertAction(title: "Create", style: .default, handler: { [self] _ in
+                    self.loginDelegate?.signUp(inputedLogin: email, inputedPass: password, completion: { isCreated in
+                        
+                        if isCreated {
+                            let ac = UIAlertController(title: "Success", message: "User was created", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            self.present(ac, animated: true)
+                        } else {
+                            let ac = UIAlertController(title: "Ooops", message: "Try another login or password", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            self.present(ac, animated: true)
+                        }
+                    })
+                }))
+                self.present(ac, animated: true)
+            }
+        })
     }
 }
 
@@ -574,13 +607,18 @@ extension LogInViewController: UITextFieldDelegate {
 }
 
 protocol LoginViewControllerDelegate {
-    func check (inputedLogin: String, inputedPass: String) -> Bool
+    
+    func chechCredentials(inputedLogin: String, inputedPass: String, completion: ((_ status: LoginResult)->Void)?)
+    func signUp(inputedLogin: String, inputedPass: String, completion: ((_ isCreated: Bool) -> Void)?)
 }
 
 struct LoginInspector: LoginViewControllerDelegate {
     
-    func check (inputedLogin: String, inputedPass: String) -> Bool {
-        return Checker.shared.check(inputedLogin: inputedLogin, inputedPass: inputedPass)
+    func signUp(inputedLogin: String, inputedPass: String, completion: ((_ isCreated: Bool) -> Void)?) {
+        return CheckerService().signUp(inputedLogin: inputedLogin, inputedPass: inputedPass, completion: completion)
     }
     
+    func chechCredentials(inputedLogin: String, inputedPass: String, completion: ((_ status: LoginResult) -> Void)?) {
+        return CheckerService().chechCredentials(inputedLogin: inputedLogin, inputedPass: inputedPass, completion: completion)
+    }
 }

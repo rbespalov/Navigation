@@ -55,11 +55,11 @@ class ProfileViewController: UIViewController {
  
     private func setupView() {
         
-        #if DEBUG
-        self.view.backgroundColor = .green
-        #else
-        self.view.backgroundColor = .systemGray6
-        #endif
+//        #if DEBUG
+//        self.view.backgroundColor = .green
+//        #else
+//        self.view.backgroundColor = .systemGray6
+//        #endif
         
         self.navigationController?.navigationBar.isHidden = true
     }

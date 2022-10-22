@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 
 
@@ -40,13 +41,6 @@ struct NetworkManager {
                 print ("Error, statuse code is \(resp.statusCode)")
                 return
             }
-                    
-                    
-                    
-//            if (response as! HTTPURLResponse).statusCode != 200 {
-//                print ("Error, statuse code is \((response as! HTTPURLResponse).statusCode)")
-//                return
-//            }
             
             guard let data else {
                 print("No data")
@@ -56,10 +50,10 @@ struct NetworkManager {
             do {
                 let answer = try JSONSerialization.jsonObject(with: data)
                 print(answer)
-                print("===============")
-                print("\(resp.allHeaderFields)")
-                print("===============")
-                print("\(resp.statusCode)")
+//                print("===============")
+//                print("\(resp.allHeaderFields)")
+//                print("===============")
+//                print("\(resp.statusCode)")
                 return
                 
                 // error - The Internet connection appears to be offline.

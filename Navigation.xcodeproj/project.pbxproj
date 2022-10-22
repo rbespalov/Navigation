@@ -16,6 +16,10 @@
 		D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A0728898E43000D72F9 /* PhotosViewController.swift */; };
 		D6212A0A2889A9C2000D72F9 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A092889A9C1000D72F9 /* Photo.swift */; };
 		D6212A0C288C09B8000D72F9 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6212A0B288C09B8000D72F9 /* PhotosCollectionViewCell.swift */; };
+		D63182B928FDC0F100471F8A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63182B828FDC0F100471F8A /* FirebaseAuth */; };
+		D63182BB28FDEFCD00471F8A /* CheckerServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63182BA28FDEFCD00471F8A /* CheckerServise.swift */; };
+		D63182BE28FE033E00471F8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D63182BD28FE033E00471F8A /* GoogleService-Info.plist */; };
+		D63182BF28FE033E00471F8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D63182BD28FE033E00471F8A /* GoogleService-Info.plist */; };
 		D656896428F7443B00162B31 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D656896328F7443B00162B31 /* NetworkManager.swift */; };
 		D65EA480286395A300DD5B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65EA47F286395A300DD5B22 /* AppDelegate.swift */; };
 		D65EA482286395A300DD5B22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65EA481286395A300DD5B22 /* SceneDelegate.swift */; };
@@ -93,6 +97,8 @@
 		D6212A0728898E43000D72F9 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		D6212A092889A9C1000D72F9 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D6212A0B288C09B8000D72F9 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		D63182BA28FDEFCD00471F8A /* CheckerServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServise.swift; sourceTree = "<group>"; };
+		D63182BD28FE033E00471F8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D656896328F7443B00162B31 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D65EA47C286395A300DD5B22 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65EA47F286395A300DD5B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D660C7C628B3D52900AED09E /* StorageService.framework in Frameworks */,
+				D63182B928FDC0F100471F8A /* FirebaseAuth in Frameworks */,
 				D67BA35228CE0D33001ACC4F /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +163,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D63182BC28FDF05900471F8A /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				D6002D4E28CB94AC00A33029 /* TestUserService.swift */,
+				D6002D4828BD429800A33029 /* User.swift */,
+				D6FC765B28CC8A5D00D76D58 /* Checker.swift */,
+				D6002D4A28BD43B000A33029 /* UserService.swift */,
+				D6FC765D28CD07B100D76D58 /* LoginFactory.swift */,
+				D6002D4C28CA229C00A33029 /* CurrentUserService.swift */,
+			);
+			path = temp;
+			sourceTree = "<group>";
+		};
 		D65EA473286395A300DD5B22 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +185,7 @@
 				D671EED028D8E1BC00C0C1A8 /* Assembly.swift */,
 				D671EEC928D8C43B00C0C1A8 /* RootCoordinator.swift */,
 				D601433C28E4D6570030D17E /* BruteForce.swift */,
+				D63182BA28FDEFCD00471F8A /* CheckerServise.swift */,
 				D671EEAE28D784E100C0C1A8 /* Controller */,
 				D65EA47E286395A300DD5B22 /* Navigation */,
 				D660C7C128B3D52900AED09E /* StorageService */,
@@ -190,6 +211,7 @@
 				D65EA488286395A300DD5B22 /* Assets.xcassets */,
 				D6BA8CA328F35075000AE271 /* Audio */,
 				D65EA48A286395A300DD5B22 /* LaunchScreen.storyboard */,
+				D63182BD28FE033E00471F8A /* GoogleService-Info.plist */,
 				D65EA48D286395A300DD5B22 /* Info.plist */,
 			);
 			path = Navigation;
@@ -275,13 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				D6ADF318287D82F4009D90E2 /* LogInViewController.swift */,
-				D6002D4828BD429800A33029 /* User.swift */,
-				D6FC765B28CC8A5D00D76D58 /* Checker.swift */,
-				D6002D4A28BD43B000A33029 /* UserService.swift */,
-				D6FC765D28CD07B100D76D58 /* LoginFactory.swift */,
-				D6002D4C28CA229C00A33029 /* CurrentUserService.swift */,
-				D6002D4E28CB94AC00A33029 /* TestUserService.swift */,
 				D6ADF31A287DC7ED009D90E2 /* LoginCustomButton.swift */,
+				D63182BC28FDF05900471F8A /* temp */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -339,6 +356,7 @@
 			name = Navigation;
 			packageProductDependencies = (
 				D67BA35128CE0D33001ACC4F /* iOSIntPackage */,
+				D63182B828FDC0F100471F8A /* FirebaseAuth */,
 			);
 			productName = Navigation;
 			productReference = D65EA47C286395A300DD5B22 /* Navigation.app */;
@@ -391,6 +409,7 @@
 			mainGroup = D65EA473286395A300DD5B22;
 			packageReferences = (
 				D67BA35028CE0D33001ACC4F /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				D63182B728FDC0F100471F8A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D65EA47D286395A300DD5B22 /* Products */;
 			projectDirPath = "";
@@ -408,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6709DB628F1EA8D00F9F5B6 /* Weak.mp3 in Resources */,
+				D63182BE28FE033E00471F8A /* GoogleService-Info.plist in Resources */,
 				D6709DB428F1EA8700F9F5B6 /* Hypa.mp3 in Resources */,
 				D65EA48C286395A300DD5B22 /* LaunchScreen.storyboard in Resources */,
 				D683619E28EE1A4000E880EC /* Duality.mp3 in Resources */,
@@ -421,6 +441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D63182BF28FE033E00471F8A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +479,7 @@
 				D6FC765E28CD07B100D76D58 /* LoginFactory.swift in Sources */,
 				D6212A0828898E43000D72F9 /* PhotosViewController.swift in Sources */,
 				D671EEDB28DB7B3800C0C1A8 /* FeedCoordinator.swift in Sources */,
+				D63182BB28FDEFCD00471F8A /* CheckerServise.swift in Sources */,
 				D671EEB628D7A0BE00C0C1A8 /* InfoView.swift in Sources */,
 				D671EECA28D8C43B00C0C1A8 /* RootCoordinator.swift in Sources */,
 				D65EA482286395A300DD5B22 /* SceneDelegate.swift in Sources */,
@@ -763,6 +785,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D63182B728FDC0F100471F8A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		D67BA35028CE0D33001ACC4F /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
@@ -774,6 +804,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D63182B828FDC0F100471F8A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D63182B728FDC0F100471F8A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		D67BA35128CE0D33001ACC4F /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D67BA35028CE0D33001ACC4F /* XCRemoteSwiftPackageReference "iOSIntPackage" */;

@@ -31,7 +31,8 @@ final class RootCoordinator: AppCoordinator {
         let loginNC = UINavigationController(rootViewController: loginVC)
         loginNC.tabBarItem.image = UIImage(systemName: "person.fill")
         loginNC.tabBarItem.title = "LOGIN"
-        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
+//        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
+        loginVC.loginDelegate = LoginInspector()
         
         let feedTransitionHandler = UINavigationController()
         
@@ -46,7 +47,6 @@ final class RootCoordinator: AppCoordinator {
         profileCoordinator.makeProfileVC()
         let profileVC = profileCoordinator
         childs.append(profileCoordinator)
-        
         
         transitionHandler?.tabBar.backgroundColor = .systemGray6
         transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
