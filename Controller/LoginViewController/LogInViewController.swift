@@ -3,10 +3,14 @@
 import UIKit
 import AVFoundation
 import FirebaseAuth
+import RealmSwift
 
 class LogInViewController: UIViewController {
     
+    
     var loginDelegate: LoginViewControllerDelegate?
+    
+    var realmService = RealmService()
     
     private let engine = AVAudioEngine()
     private let player = AVAudioPlayerNode()
@@ -130,13 +134,13 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var pickPassButton: UIButton = {
+    private lazy var registerNewUserButton: UIButton = {
        let buttoon = UIButton()
         buttoon.translatesAutoresizingMaskIntoConstraints = false
-        buttoon.setTitle("Pick up a password", for: .normal)
+        buttoon.setTitle("Create new User", for: .normal)
         buttoon.layer.cornerRadius = 10
         buttoon.backgroundColor = .orange
-        buttoon.addTarget(self, action: #selector(pickPass), for: .touchUpInside)
+        buttoon.addTarget(self, action: #selector(createNewUser), for: .touchUpInside)
         return buttoon
     }()
     
@@ -225,7 +229,7 @@ class LogInViewController: UIViewController {
         passwordTextField.returnKeyType = UIReturnKeyType.done
         passwordTextField.autocorrectionType = .no
         passwordTextField.keyboardType = .namePhonePad
-        passwordTextField.isSecureTextEntry = false
+        passwordTextField.isSecureTextEntry = true
         
         passwordTextField.delegate = self
 
@@ -254,7 +258,7 @@ class LogInViewController: UIViewController {
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         
-        logInButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         
         logInButton.layer.cornerRadius = 10
         logInButton.setTitleColor(.white, for: .normal)
@@ -274,10 +278,10 @@ class LogInViewController: UIViewController {
     }()
     
     // MARK: - Lifecycle
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
 
         contentView.addSubview(playerStackView)
@@ -413,7 +417,7 @@ class LogInViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    // MARK: ADD SUBWIEW
+    // MARK: ADD SUBVIEW
 
     private func addSubViews() {
         view.addSubview(scrollView)
@@ -421,7 +425,7 @@ class LogInViewController: UIViewController {
         contentView.addSubview(stackView)
         contentView.addSubview(logoImage)
         contentView.addSubview(logInButton)
-        contentView.addSubview(pickPassButton)
+        contentView.addSubview(registerNewUserButton)
         passwordTextField.addSubview(indicator)
 
     }
@@ -457,10 +461,10 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            pickPassButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
-            pickPassButton.heightAnchor.constraint(equalToConstant: 50),
-            pickPassButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            pickPassButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            registerNewUserButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            registerNewUserButton.heightAnchor.constraint(equalToConstant: 50),
+            registerNewUserButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            registerNewUserButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       
             indicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
             indicator.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor)
@@ -491,107 +495,76 @@ class LogInViewController: UIViewController {
         notificationCenter.removeObserver(self)
     }
     
-    private func bruteForce(passwordToUnlock: String) {
+    @objc private func createNewUser() {
         
-        let timer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(self.updateTimeCounter),
-            userInfo: nil,
-            repeats: true
-        )
+        var login: String?
+        var pass: String?
         
-        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
-        let bruteForce = BruteForse()
-        var password: String = ""
-        let queue = DispatchQueue(label: "rbespalov.queue", qos: .utility)
-        let workItem = DispatchWorkItem() {
-            while password.count <= passwordToUnlock.count {
-            password = bruteForce.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
-            if passwordToUnlock == password {
-                DispatchQueue.main.async {
-                    self.passwordTextField.text = passwordToUnlock
-                    self.indicator.stopAnimating()
-                    timer.invalidate()
-                    self.pickPassButton.setTitle("Pick up a password", for: .normal)
-                    }
+        if loginTextField.text == "" {
+            let ac = UIAlertController(title: "Error", message: "Empty field", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel)
+            ac.addAction(action)
+            self.navigationController?.present(ac, animated: true)
+        } else {
+            login = loginTextField.text!
+        }
+        
+        if passwordTextField.text == "" {
+            let ac = UIAlertController(title: "Error", message: "Empty field", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel)
+            ac.addAction(action)
+            self.navigationController?.present(ac, animated: true)
+        } else {
+            pass = passwordTextField.text!
+        }
+        
+        if login != nil && pass != nil {
+            let usersArray:[UserModel] = Array(realmService.realm.objects(UserModel.self))
+            var currentUser:UserModel?
+            for user in usersArray {
+                if user.name == loginTextField.text {
+                    currentUser = user
                 }
             }
-        }
-        queue.async(execute: workItem)
-    }
-    
-    private var counter: Int = 0
-    
-    @objc private func updateTimeCounter() {
-        counter += 1
-        pickPassButton.setTitle("Brutforcing pass for \(counter) seconds", for: .normal)
-    }
-    
-    @objc private func pickPass() {
-        func randomString(length: Int) -> String {
-          let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-          return String((0..<length).map{ _ in letters.randomElement()! })
-        }
-        let randomString: String = randomString(length: 4)
-        
-        bruteForce(passwordToUnlock: randomString)
-        indicator.startAnimating()
-    }
-    
-    @objc private func tap() {
-        
-        if loginTextField.text == "" || passwordTextField.text == "" {
-            let ac = UIAlertController(title: "Oooops", message: "One of fields is empty", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-            present(ac, animated: true)
-        }
-        
-        guard let email = loginTextField.text,
-              let password = passwordTextField.text else {
-                  print("Missing field data")
-            return
-              }
-        
-        loginDelegate?.chechCredentials(inputedLogin: email, inputedPass: password, completion: { reslt in
-            
-            switch reslt {
-            case .invalidPassword:
-                let ac = UIAlertController(title: "Try again", message: "Invalid oassword", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-                self.present(ac, animated: true)
-                
-            case .logined:
-                let profileVC = ProfileViewController()
-                let loginnedUser = User(login: email, fullName: "My Name", avatar: UIImage(named: "user")!, status: "Logined!!!")
-                profileVC.currenUser = loginnedUser
-                self.navigationController?.pushViewController(profileVC, animated: true)
-                
-            case .invalidEmailFormat:
-                let ac = UIAlertController(title: "Try again", message: "Invalid email format", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-                self.present(ac, animated: true)
-                
-            case .userDoesNotExist:
-                let ac = UIAlertController(title: "User does not exist", message: "Would you like to create?", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                ac.addAction(UIAlertAction(title: "Create", style: .default, handler: { [self] _ in
-                    self.loginDelegate?.signUp(inputedLogin: email, inputedPass: password, completion: { isCreated in
-                        
-                        if isCreated {
-                            let ac = UIAlertController(title: "Success", message: "User was created", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-                            self.present(ac, animated: true)
-                        } else {
-                            let ac = UIAlertController(title: "Ooops", message: "Try another login or password", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-                            self.present(ac, animated: true)
-                        }
-                    })
-                }))
-                self.present(ac, animated: true)
+            if currentUser == nil {
+                self .realmService.createUser(name: login!, password: pass!)
+                let ac = UIAlertController(title: "Success", message: "User was created", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                ac.addAction(action)
+                self.navigationController?.present(ac, animated: true)
+            } else {
+                let ac = UIAlertController(title: "Oppps", message: "login exists, create a new one", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                ac.addAction(action)
+                self.navigationController?.present(ac, animated: true)
             }
-        })
+        }
+    }
+    
+    @objc private func logIn() {
+
+        let usersArray:[UserModel] = Array(realmService.realm.objects(UserModel.self))
+        
+        var currentUser: UserModel?
+        
+        for user in usersArray {
+            if user.name == loginTextField.text && user.password == passwordTextField.text {
+                currentUser = user
+            }
+        }
+        if currentUser != nil {
+            let profileVC = ProfileViewController()
+            let loginnedUser = User(login: currentUser?.name ?? "Error", fullName: "My Name", avatar: UIImage(named: "user")!, status: "Logined!!!")
+            profileVC.currenUser = loginnedUser
+            UserDefaults().set(true, forKey: "isLogined")
+            self.navigationController?.pushViewController(profileVC, animated: true)
+
+        } else {
+            let ac = UIAlertController(title: "Error", message: "Invalid login or password, please try again", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel)
+            ac.addAction(alertAction)
+            self.navigationController?.present(ac, animated: true)
+        }
     }
 }
 
