@@ -49,6 +49,10 @@ final class RootCoordinator: AppCoordinator {
         childs.append(profileCoordinator)
         
         transitionHandler?.tabBar.backgroundColor = .systemGray6
-        transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
+        if UserDefaults().bool(forKey: "isLogined") {
+            transitionHandler?.setViewControllers([feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
+        } else {
+            transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
+        }
     }
 }
