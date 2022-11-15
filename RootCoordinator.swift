@@ -48,9 +48,15 @@ final class RootCoordinator: AppCoordinator {
         let profileVC = profileCoordinator
         childs.append(profileCoordinator)
         
+        let favoritePostsVC = FavoritePostViewController()
+        let nc = UINavigationController(rootViewController: favoritePostsVC)
+        nc.tabBarItem.title = "Favorites"
+        nc.tabBarItem.image = UIImage(systemName: "hand.thumbsup.fill")
+        
+        
         transitionHandler?.tabBar.backgroundColor = .systemGray6
         if UserDefaults().bool(forKey: "isLogined") {
-            transitionHandler?.setViewControllers([feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
+            transitionHandler?.setViewControllers([feedVC.transitionHandler, profileVC.transitionHandler, nc], animated: true)
         } else {
             transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
         }

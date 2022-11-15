@@ -7,7 +7,7 @@ class PostTableViewCell: UITableViewCell {
     
     // MARK: - Subviews
     
-    private lazy var authotLabel: UILabel = {
+    lazy var authotLabel: UILabel = {
         let authorLabel = UILabel()
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -16,7 +16,7 @@ class PostTableViewCell: UITableViewCell {
         return authorLabel
     }()
     
-    private lazy var postImage: UIImageView = {
+    lazy var postImage: UIImageView = {
         let postImage = UIImageView()
         postImage.translatesAutoresizingMaskIntoConstraints = false
         postImage.contentMode = .scaleAspectFit
@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
         return postImage
     }()
     
-    private lazy var postDescription: UILabel = {
+    lazy var postDescription: UILabel = {
         let postDescription = UILabel()
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         postDescription.textColor = .systemGray
@@ -36,7 +36,7 @@ class PostTableViewCell: UITableViewCell {
         return postDescription
     }()
     
-    private lazy var numberOfLikes: UILabel = {
+    lazy var numberOfLikes: UILabel = {
         let numberOfLikes = UILabel()
         numberOfLikes.translatesAutoresizingMaskIntoConstraints = false
         numberOfLikes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -44,7 +44,7 @@ class PostTableViewCell: UITableViewCell {
         return numberOfLikes
     }()
     
-    private lazy var numberOfViews: UILabel = {
+    lazy var numberOfViews: UILabel = {
         let numberOfViews = UILabel()
         numberOfViews.translatesAutoresizingMaskIntoConstraints = false
         numberOfViews.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -52,7 +52,7 @@ class PostTableViewCell: UITableViewCell {
         return numberOfViews
     }()
     
-    private lazy var stackView: UIStackView = {
+    lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.clipsToBounds = true
 
