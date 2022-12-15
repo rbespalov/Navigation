@@ -53,6 +53,9 @@
 		D68B0B8E28DF700E007462E2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8D28DF700E007462E2 /* ProfileViewModel.swift */; };
 		D6ADF319287D82F4009D90E2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADF318287D82F4009D90E2 /* LogInViewController.swift */; };
 		D6ADF31B287DC7ED009D90E2 /* LoginCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADF31A287DC7ED009D90E2 /* LoginCustomButton.swift */; };
+		D6AE8B56292127DC008872E3 /* post.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6AE8B54292127DC008872E3 /* post.xcdatamodeld */; };
+		D6AE8B5829212DB1008872E3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE8B5729212DB1008872E3 /* CoreDataManager.swift */; };
+		D6AE8B5C29240C71008872E3 /* FavoritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE8B5B29240C71008872E3 /* FavoritePostViewController.swift */; };
 		D6B8437128CF689300E4261D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8437028CF689300E4261D /* CustomButton.swift */; };
 		D6B8437428D262E400E4261D /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8437328D262E400E4261D /* FeedModel.swift */; };
 		D6D0395C28E0AE9500D90AB4 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0395B28E0AE9500D90AB4 /* PhotosViewModel.swift */; };
@@ -133,6 +136,9 @@
 		D68B0B8D28DF700E007462E2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D6ADF318287D82F4009D90E2 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D6ADF31A287DC7ED009D90E2 /* LoginCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCustomButton.swift; sourceTree = "<group>"; };
+		D6AE8B55292127DC008872E3 /* post.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = post.xcdatamodel; sourceTree = "<group>"; };
+		D6AE8B5729212DB1008872E3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		D6AE8B5B29240C71008872E3 /* FavoritePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePostViewController.swift; sourceTree = "<group>"; };
 		D6B8437028CF689300E4261D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D6B8437328D262E400E4261D /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		D6D0395B28E0AE9500D90AB4 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
@@ -189,9 +195,11 @@
 				D671EED028D8E1BC00C0C1A8 /* Assembly.swift */,
 				D646E905291AD27000600308 /* RealmModel.swift */,
 				D671EEC928D8C43B00C0C1A8 /* RootCoordinator.swift */,
-				D601433C28E4D6570030D17E /* BruteForce.swift */,
 				D63182BA28FDEFCD00471F8A /* CheckerServise.swift */,
+				D6AE8B5729212DB1008872E3 /* CoreDataManager.swift */,
+				D6AE8B54292127DC008872E3 /* post.xcdatamodeld */,
 				D671EEAE28D784E100C0C1A8 /* Controller */,
+				D6AE8B532921279B008872E3 /* temp */,
 				D65EA47E286395A300DD5B22 /* Navigation */,
 				D660C7C128B3D52900AED09E /* StorageService */,
 				D65EA47D286395A300DD5B22 /* Products */,
@@ -234,6 +242,7 @@
 		D671EEAE28D784E100C0C1A8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D6AE8B5B29240C71008872E3 /* FavoritePostViewController.swift */,
 				D6B8436E28CF65D900E4261D /* LoginViewController */,
 				D671EEB828D7A4EA00C0C1A8 /* FeedViewController */,
 				D671EEBB28D7A6F100C0C1A8 /* ProfileViewController */,
@@ -296,6 +305,14 @@
 				D6212A0B288C09B8000D72F9 /* PhotosCollectionViewCell.swift */,
 			);
 			path = PhotosView;
+			sourceTree = "<group>";
+		};
+		D6AE8B532921279B008872E3 /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				D601433C28E4D6570030D17E /* BruteForce.swift */,
+			);
+			path = temp;
 			sourceTree = "<group>";
 		};
 		D6B8436E28CF65D900E4261D /* LoginViewController */ = {
@@ -460,8 +477,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D671EED128D8E1BC00C0C1A8 /* Assembly.swift in Sources */,
+				D6AE8B5C29240C71008872E3 /* FavoritePostViewController.swift in Sources */,
 				D6212A0A2889A9C2000D72F9 /* Photo.swift in Sources */,
 				D65EA484286395A300DD5B22 /* FeedViewController.swift in Sources */,
+				D6AE8B56292127DC008872E3 /* post.xcdatamodeld in Sources */,
 				D671EEC428D7B0B400C0C1A8 /* PhotosView.swift in Sources */,
 				D6002D4B28BD43B000A33029 /* UserService.swift in Sources */,
 				D6D90DED2880300F005D8B13 /* ProfileTableHederView.swift in Sources */,
@@ -470,6 +489,7 @@
 				D671EEC828D8C3A000C0C1A8 /* AppCoordinator.swift in Sources */,
 				D65EA480286395A300DD5B22 /* AppDelegate.swift in Sources */,
 				D6ADF319287D82F4009D90E2 /* LogInViewController.swift in Sources */,
+				D6AE8B5829212DB1008872E3 /* CoreDataManager.swift in Sources */,
 				D6B8437428D262E400E4261D /* FeedModel.swift in Sources */,
 				D6734AAD2863961E00E4E76C /* ProfileViewController.swift in Sources */,
 				D646E906291AD27000600308 /* RealmModel.swift in Sources */,
@@ -836,6 +856,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		D6AE8B54292127DC008872E3 /* post.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D6AE8B55292127DC008872E3 /* post.xcdatamodel */,
+			);
+			currentVersion = D6AE8B55292127DC008872E3 /* post.xcdatamodel */;
+			path = post.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D65EA474286395A300DD5B22 /* Project object */;
 }

@@ -5,6 +5,8 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Data
     
+    let coreManager = CoreDataManager.shared
+    
     private var data = ProfilePost.make()
     
     var viewModel: ProfileVIewModel! {
@@ -54,12 +56,6 @@ class ProfileViewController: UIViewController {
     // MARK: - Private
  
     private func setupView() {
-        
-//        #if DEBUG
-//        self.view.backgroundColor = .green
-//        #else
-//        self.view.backgroundColor = .systemGray6
-//        #endif
         
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -151,7 +147,18 @@ extension ProfileViewController: UITableViewDataSource {
         let data = data[indexPath.row]
         cell.setup(with: data)
         
+        let tap = UITapGestureRecognizer()
+        tap.numberOfTapsRequired = 2
+        tap.addTarget(self, action: #selector(doubleTap))
+        cell.addGestureRecognizer(tap)
+        
         return cell
+    }
+    
+    @objc func doubleTap() {
+        let indexPath = tableView.indexPathForSelectedRow
+        let selectedCell = data[indexPath!.row]
+        coreManager.addPost(author: selectedCell.author, description: selectedCell.description, image: selectedCell.image, likes: selectedCell.likes, views: selectedCell.views)        
     }
 }
 
@@ -198,7 +205,7 @@ extension ProfileViewController: UITableViewDelegate {
     ) {
         if indexPath.section == 0 {
             output?.showPhotos()
-        }
+        } 
     }
 }
 
