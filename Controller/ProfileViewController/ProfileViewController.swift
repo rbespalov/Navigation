@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
     
     private func tuneTableView() {
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .systemGray6
+//        tableView.backgroundColor = .createColor(lightMode: .systemGray6, darkMode: .white)
         tableView.register(
             PostTableViewCell.self,
             forCellReuseIdentifier: CellReuseID.base.rawValue
@@ -158,7 +158,7 @@ extension ProfileViewController: UITableViewDataSource {
     @objc func doubleTap() {
         let indexPath = tableView.indexPathForSelectedRow
         let selectedCell = data[indexPath!.row]
-        coreManager.addPost(author: selectedCell.author, description: selectedCell.description, image: selectedCell.image, likes: selectedCell.likes, views: selectedCell.views)        
+        coreManager.addPost(author: selectedCell.author, description: selectedCell.description, image: selectedCell.image, likes: selectedCell.likes, views: selectedCell.views)
     }
 }
 

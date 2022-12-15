@@ -9,7 +9,7 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var photosLabel: UILabel = {
         let photosLabel = UILabel()
         photosLabel.translatesAutoresizingMaskIntoConstraints = false
-        photosLabel.textColor = .black
+        photosLabel.textColor = .createColor(lightMode: .black, darkMode: .white)
         photosLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         photosLabel.text = "Photos"
         return photosLabel
@@ -18,7 +18,7 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var arrow: UIImageView = {
         let arrow = UIImageView()
         arrow.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(systemName: "arrow.right")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: "arrow.right")?.withTintColor(.createColor(lightMode: .black, darkMode: .white), renderingMode: .alwaysOriginal)
         arrow.image = image
     
         return arrow
@@ -126,7 +126,7 @@ class PhotosTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setupView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .black)
     }
     
     private func setupSubViews() {
