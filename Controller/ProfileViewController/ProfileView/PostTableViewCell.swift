@@ -12,7 +12,7 @@ class PostTableViewCell: UITableViewCell {
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         authorLabel.numberOfLines = 2
-        authorLabel.textColor = .black
+        authorLabel.textColor = .createColor(lightMode: .black, darkMode: .white)
         return authorLabel
     }()
     
@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
     lazy var postDescription: UILabel = {
         let postDescription = UILabel()
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        postDescription.textColor = .systemGray
+        postDescription.textColor = .createColor(lightMode: .systemGray, darkMode: .white)
         postDescription.translatesAutoresizingMaskIntoConstraints = false
         postDescription.numberOfLines = 0
         
@@ -40,7 +40,7 @@ class PostTableViewCell: UITableViewCell {
         let numberOfLikes = UILabel()
         numberOfLikes.translatesAutoresizingMaskIntoConstraints = false
         numberOfLikes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        numberOfLikes.textColor = .black
+        numberOfLikes.textColor = .createColor(lightMode: .black, darkMode: .white)
         return numberOfLikes
     }()
     
@@ -48,7 +48,7 @@ class PostTableViewCell: UITableViewCell {
         let numberOfViews = UILabel()
         numberOfViews.translatesAutoresizingMaskIntoConstraints = false
         numberOfViews.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        numberOfViews.textColor = .black
+        numberOfViews.textColor = .createColor(lightMode: .black, darkMode: .white)
         return numberOfViews
     }()
     
@@ -96,7 +96,7 @@ class PostTableViewCell: UITableViewCell {
     
     private func setupView() {
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .black)
     }
     
     private func setupSubViews() {

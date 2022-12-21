@@ -77,7 +77,8 @@ class LogInViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = contentView.backgroundColor
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemBlue
+//        label.textColor = .systemBlue
+        label.textColor = .createColor(lightMode: .systemBlue, darkMode: .systemGray)
         label.text = ""
         return label
     }()
@@ -139,7 +140,7 @@ class LogInViewController: UIViewController {
         buttoon.translatesAutoresizingMaskIntoConstraints = false
         buttoon.setTitle("Create new User", for: .normal)
         buttoon.layer.cornerRadius = 10
-        buttoon.backgroundColor = .orange
+        buttoon.backgroundColor = .createColor(lightMode: .orange, darkMode: .darkGray)
         buttoon.addTarget(self, action: #selector(createNewUser), for: .touchUpInside)
         return buttoon
     }()
@@ -149,7 +150,7 @@ class LogInViewController: UIViewController {
         
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .createColor(lightMode: .white, darkMode: .black)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
@@ -159,7 +160,7 @@ class LogInViewController: UIViewController {
         let contentView = UIView()
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .black)
         
         return contentView
     }()
@@ -264,6 +265,7 @@ class LogInViewController: UIViewController {
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.setTitle("Log In", for: .normal)
         logInButton.backgroundColor = UIColor(named: "СolorForLogo")
+        logInButton.backgroundColor = .createColor(lightMode: UIColor(named: "СolorForLogo") ?? .blue, darkMode: .systemGray)
         logInButton.isUserInteractionEnabled = true
         
         return logInButton
@@ -413,7 +415,7 @@ class LogInViewController: UIViewController {
     }
     
     private func setupView() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .createColor(lightMode: .white, darkMode: .black)
         self.navigationController?.navigationBar.isHidden = true
     }
     

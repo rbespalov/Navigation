@@ -18,7 +18,7 @@ extension ProfilePost {
         [
             ProfilePost(
                 author: "Slipknot - IOWA",
-                description: "iowa is the second studio album by the American heavy metal band Slipknot. Released by Roadrunner Records on August 28, 2001, it was produced by Ross Robinson and Slipknot. The title derives from the band's home state, Iowa, which members have stated is one of their greatest sources of inspiration.",
+                description: "iowa is the second studio album by the American heavy metal band Slipknot. Released by Roadrunner Records on August 28, 2001, it was produced by Ross Robinson and Slipknot. The title derives from the bands home state, Iowa, which members have stated is one of their greatest sources of inspiration.",
                 image: "slipknot",
                 likes: 2342,
                 views: 9128

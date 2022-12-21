@@ -40,7 +40,7 @@ final class PhotosViewController: UIViewController {
         
         let processor = ImageProcessor()
         let startTime = Date()
-        processor.processImagesOnThread(sourceImages: imagesArray!, filter: .noir, qos: .utility) { newImage in
+        processor.processImagesOnThread(sourceImages: imagesArray!, filter: .fade, qos: .utility) { newImage in
             let finishTime = Date()
             let result = finishTime.timeIntervalSince(startTime)
             print (result)

@@ -58,7 +58,7 @@ final class RootCoordinator: AppCoordinator {
         if UserDefaults().bool(forKey: "isLogined") {
             transitionHandler?.setViewControllers([feedVC.transitionHandler, profileVC.transitionHandler, nc], animated: true)
         } else {
-            transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler], animated: true)
+            transitionHandler?.setViewControllers([loginNC, feedVC.transitionHandler, profileVC.transitionHandler, nc], animated: true)
         }
     }
 }
