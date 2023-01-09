@@ -21,6 +21,7 @@
 		D62C1213294BA8EA0068755E /* ModelForHW2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EB2DDA28FAFD7C0027DB31 /* ModelForHW2.swift */; };
 		D62C1215294BA9140068755E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE8B5729212DB1008872E3 /* CoreDataManager.swift */; };
 		D62C1216294BA9180068755E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6644EB6286762AE005D69A9 /* Post.swift */; };
+		D6306AAB295874BE00F1E98D /* LocalAuthorizationServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6306AAA295874BE00F1E98D /* LocalAuthorizationServise.swift */; };
 		D63182B928FDC0F100471F8A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63182B828FDC0F100471F8A /* FirebaseAuth */; };
 		D63182BB28FDEFCD00471F8A /* CheckerServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63182BA28FDEFCD00471F8A /* CheckerServise.swift */; };
 		D63182BE28FE033E00471F8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D63182BD28FE033E00471F8A /* GoogleService-Info.plist */; };
@@ -115,6 +116,7 @@
 		D6212A092889A9C1000D72F9 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D6212A0B288C09B8000D72F9 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		D62C1210294BA6F50068755E /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
+		D6306AAA295874BE00F1E98D /* LocalAuthorizationServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationServise.swift; sourceTree = "<group>"; };
 		D63182BA28FDEFCD00471F8A /* CheckerServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServise.swift; sourceTree = "<group>"; };
 		D63182BD28FE033E00471F8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D639ED6F29539B230017B6D6 /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +234,7 @@
 				D63182BA28FDEFCD00471F8A /* CheckerServise.swift */,
 				D6EB2DDA28FAFD7C0027DB31 /* ModelForHW2.swift */,
 				D6AE8B5729212DB1008872E3 /* CoreDataManager.swift */,
+				D6306AAA295874BE00F1E98D /* LocalAuthorizationServise.swift */,
 				D6AE8B54292127DC008872E3 /* post.xcdatamodeld */,
 				D671EEAE28D784E100C0C1A8 /* Controller */,
 				D6C33D5C292D4BB600548DFB /* Extentions */,
@@ -590,6 +593,7 @@
 				D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */,
 				D6212A0628898150000D72F9 /* PhotosTableViewCell.swift in Sources */,
 				D656896428F7443B00162B31 /* NetworkManager.swift in Sources */,
+				D6306AAB295874BE00F1E98D /* LocalAuthorizationServise.swift in Sources */,
 				D68B0B8C28DF4A9C007462E2 /* ProfileCoordinator.swift in Sources */,
 				D601433D28E4D6570030D17E /* BruteForce.swift in Sources */,
 				D671EEBA28D7A59D00C0C1A8 /* InfoViewController.swift in Sources */,
@@ -810,6 +814,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use Face ID/Touch ID";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -837,6 +842,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use Face ID/Touch ID";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

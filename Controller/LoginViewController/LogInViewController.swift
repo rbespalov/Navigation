@@ -12,6 +12,8 @@ class LogInViewController: UIViewController {
     
     var realmService = RealmService()
     
+    private let authService = LocalAuthorizationServise()
+    
     private let engine = AVAudioEngine()
     private let player = AVAudioPlayerNode()
 
@@ -270,6 +272,17 @@ class LogInViewController: UIViewController {
         
         return logInButton
     }()
+    
+    private lazy var biometricIDButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "faceid"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(biometrick), for: .touchUpInside)
+       return button
+    }()
 //
     private lazy var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -288,6 +301,7 @@ class LogInViewController: UIViewController {
 
         contentView.addSubview(playerStackView)
         contentView.addSubview(currenSongLabel)
+        contentView.addSubview(biometricIDButton)
 
         addSubViews()
         NSLayoutConstraint.activate([
@@ -298,6 +312,10 @@ class LogInViewController: UIViewController {
         playerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
         playerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
         
+        biometricIDButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+        biometricIDButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+        biometricIDButton.heightAnchor.constraint(equalToConstant: 50),
+        biometricIDButton.widthAnchor.constraint(equalToConstant: 50),
         ])
         setupConstraints()
         setupAudio()
@@ -316,6 +334,47 @@ class LogInViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @objc func biometrick() {
+        
+//        authService.canAuthorize { canAuth, _, error in
+//            guard canAuth else {
+//                let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "Face ID/Touch ID may not be configured", preferredStyle: .alert)
+//                let action = UIAlertAction(title: "OK", style: .cancel)
+//                alert.addAction(action)
+//                self.navigationController?.present(alert, animated: true)
+//                return
+//            }
+//
+//            authService.authorizeIfPossible { [weak self] (success, error) in
+//                guard success else {
+//                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "Face ID/Touch ID may not be configured", preferredStyle: .alert)
+//                    let action = UIAlertAction(title: "OK", style: .cancel)
+//                    alert.addAction(action)
+//                    self?.navigationController?.present(alert, animated: true)
+//                    return
+//                }
+//                let profileVC = ProfileViewController()
+//                self?.navigationController?.pushViewController(profileVC, animated: true)
+//            }
+//        }
+        authService.authorizeIfPossible { result in
+            if result {
+                DispatchQueue.main.async {
+                    let profileVC = ProfileViewController()
+                    profileVC.currenUser = User(login: "Rick", fullName: "Rick", avatar: UIImage(named: "18")!, status: "Logined")
+                    self.navigationController?.pushViewController(profileVC, animated: true)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: "Face ID/Touch ID may not be configured", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(action)
+                    self.navigationController?.present(alert, animated: true)
+                }
+            }
+        }
+    }
     
     @objc func play() {
         if player.isPlaying {
@@ -460,7 +519,7 @@ class LogInViewController: UIViewController {
             
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            logInButton.leadingAnchor.constraint(equalTo: biometricIDButton.trailingAnchor, constant: 10),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             registerNewUserButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
