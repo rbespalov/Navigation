@@ -12,10 +12,14 @@ import Firebase
 @main
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let notificationService = LocalNotificationService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        let notificationService = LocalNotificationService()
+        notificationService.registerForLatestUpdateifPossible()
         
         return true
     }

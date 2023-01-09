@@ -58,6 +58,7 @@
 		D68B0B8A28DF45FE007462E2 /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8928DF45FE007462E2 /* ProfileOutput.swift */; };
 		D68B0B8C28DF4A9C007462E2 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8B28DF4A9C007462E2 /* ProfileCoordinator.swift */; };
 		D68B0B8E28DF700E007462E2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B0B8D28DF700E007462E2 /* ProfileViewModel.swift */; };
+		D6AD9476296C89E700D269A2 /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD9475296C89E700D269A2 /* LocalNotificationService.swift */; };
 		D6ADF319287D82F4009D90E2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADF318287D82F4009D90E2 /* LogInViewController.swift */; };
 		D6ADF31B287DC7ED009D90E2 /* LoginCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADF31A287DC7ED009D90E2 /* LoginCustomButton.swift */; };
 		D6AE8B56292127DC008872E3 /* post.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6AE8B54292127DC008872E3 /* post.xcdatamodeld */; };
@@ -153,6 +154,7 @@
 		D68B0B8928DF45FE007462E2 /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOutput.swift; sourceTree = "<group>"; };
 		D68B0B8B28DF4A9C007462E2 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D68B0B8D28DF700E007462E2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D6AD9475296C89E700D269A2 /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
 		D6ADF318287D82F4009D90E2 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D6ADF31A287DC7ED009D90E2 /* LoginCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCustomButton.swift; sourceTree = "<group>"; };
 		D6AE8B55292127DC008872E3 /* post.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = post.xcdatamodel; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				D6EB2DDA28FAFD7C0027DB31 /* ModelForHW2.swift */,
 				D6AE8B5729212DB1008872E3 /* CoreDataManager.swift */,
 				D6306AAA295874BE00F1E98D /* LocalAuthorizationServise.swift */,
+				D6AD9475296C89E700D269A2 /* LocalNotificationService.swift */,
 				D6AE8B54292127DC008872E3 /* post.xcdatamodeld */,
 				D671EEAE28D784E100C0C1A8 /* Controller */,
 				D6C33D5C292D4BB600548DFB /* Extentions */,
@@ -588,6 +591,7 @@
 				D6734AAD2863961E00E4E76C /* ProfileViewController.swift in Sources */,
 				D6002D4F28CB94AC00A33029 /* TestUserService.swift in Sources */,
 				D6ADF31B287DC7ED009D90E2 /* LoginCustomButton.swift in Sources */,
+				D6AD9476296C89E700D269A2 /* LocalNotificationService.swift in Sources */,
 				D6002D4928BD429800A33029 /* User.swift in Sources */,
 				D68B0B8A28DF45FE007462E2 /* ProfileOutput.swift in Sources */,
 				D6D90DF32880580E005D8B13 /* PostTableViewCell.swift in Sources */,
